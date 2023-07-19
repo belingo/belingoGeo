@@ -234,7 +234,7 @@ function belingoGeo_check_city() {
 
 	$sg = $SxGeo->getCity(belingoGeo_getUserIP());
 	
-	if(isset($sg['city']['name_ru'])) {
+	if(isset($sg['city']['name_ru']) && !empty($sg['city']['name_ru'])) {
 		$city = belingogeo_get_city_by('title', $sg['city']['name_ru']);
 		if(!$city) {
 			$belingo_geo_basic_finding_nonecity = get_option('belingo_geo_basic_finding_nonecity');
