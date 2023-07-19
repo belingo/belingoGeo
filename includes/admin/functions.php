@@ -246,13 +246,14 @@ function belingoGeo_save_city( $post_id ) {
 
 		if(!$belingo_geo_basic_forced_slug_generation) {
 			$title = get_the_title($post_id);
-
-			remove_action( 'save_post', 'belingoGeo_save_city' );
-			wp_update_post( array(
-	            'ID' => $post_id,
-	            'post_name' => belingogeo_translit_city($title)
-	        ));
-	        add_action( 'save_post', 'belingoGeo_save_city' );
+			if($title != 'Default') {
+				remove_action( 'save_post', 'belingoGeo_save_city' );
+				wp_update_post( array(
+		            'ID' => $post_id,
+		            'post_name' => belingogeo_translit_city($title)
+		        ));
+		        add_action( 'save_post', 'belingoGeo_save_city' );
+	    	}
     	}
 
         flush_rewrite_rules();

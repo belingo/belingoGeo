@@ -102,12 +102,13 @@ function belingogeo_forced_confirmation_city() {
 
 function belingogeo_create_default_city() {
 
-	$default_city = belingogeo_get_city_by('slug', 'default');
+	$default_city = belingogeo_get_city_by('slug', 'default-city');
 	if(!$default_city) {
 		$city_data = array(
 			'post_type'		=> 'cities',
 			'post_title'    => 'Default',
-			'post_status'   => 'publish'
+			'post_status'   => 'publish',
+			'post_name'		=> 'default-city'
 		);
 		$city_id = wp_insert_post( $city_data );
 	}

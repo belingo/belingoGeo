@@ -16,7 +16,7 @@ function belingogeo_city_field_shortcode($atts) {
 	}
 
 	if(!$city) {
-		$city = belingoGeo_get_city_by('slug', 'default');
+		$city = belingoGeo_get_city_by('slug', 'default-city');
 	}
 
 	if($city) {

@@ -75,7 +75,7 @@ function belingoGeo_get_cities($args = array()) {
 		while($query->have_posts()) {
 			$query->the_post();
 			$city = new BelingoGeo_City(get_the_ID());
-			if($city->get_slug() != 'default') {
+			if($city->get_slug() != 'default-city') {
 				$cities[] = $city;
 			}
 		}
@@ -313,7 +313,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 		$city = belingogeo_get_city_by('slug', $current_city);
 	}
 	
-	if($city && $city->get_slug() == 'default') {
+	if($city && $city->get_slug() == 'default-city') {
 		return true;
 	}
 
