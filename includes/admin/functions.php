@@ -395,9 +395,9 @@ function belingoGeo_get_tags_ajax_callback() {
 
 add_action( 'admin_enqueue_scripts', 'belingoGeo_scripts_admin' );
 function belingoGeo_scripts_admin() {
-	wp_enqueue_style( 'select2', '/wp-content/plugins/belingogeo/css/select2.min.css' );
-	wp_enqueue_script( 'select2', '/wp-content/plugins/belingogeo/js/select2.min.js', array( 'jquery' ) );
-	wp_enqueue_script( 'belingo-geo-scripts-admin', '/wp-content/plugins/belingogeo/js/belingoGeoAdmin.js', array( 'jquery' ), '', false );
+	wp_enqueue_style( 'belingo-geo-select2', BELINGO_GEO_PLUGIN_URL . '/css/select2.min.css' );
+	wp_enqueue_script( 'belingo-geo-select2', BELINGO_GEO_PLUGIN_URL . '/js/select2.min.js', array( 'jquery' ) );
+	wp_enqueue_script( 'belingo-geo-scripts-admin', BELINGO_GEO_PLUGIN_URL . '/js/belingoGeoAdmin.js', array( 'jquery' ), '', false );
 }
 
 ?>
