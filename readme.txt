@@ -33,6 +33,10 @@ Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram chan
 4. City page
 
 == Changelog ==
+= 1.8.7 =
+* fixed city detection if result is empty
+* fix scripts and styles path for admin
+
 = 1.8.6 =
 * Fix default city
 
