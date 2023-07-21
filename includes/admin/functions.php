@@ -287,6 +287,15 @@ function belingogeo_translit_city($title) {
 
 }
 
+add_filter( 'posts_where', 'belingogeo_posts_where', 10, 2 );
+function belingogeo_posts_where( $where, &$wp_query )
+{
+    global $wpdb;
+    if ( $title = $wp_query->get( 'search_city' ) ) {
+        $where .= " AND " . $wpdb->posts . ".post_title LIKE '%" . esc_sql( $wpdb->esc_like( $title ) ) . "%'";
+    }
+    return $where;
+}
 
 add_action( 'wp_ajax_getcitiescallback', 'belingoGeo_get_cities_ajax_callback' );
 function belingoGeo_get_cities_ajax_callback() {
@@ -297,11 +306,10 @@ function belingoGeo_get_cities_ajax_callback() {
 
 	$return         = array();
 	$search_results = new WP_Query( array(
-		's'                   => $q,
+		'post_type'			  => 'cities',
+		'search_city'         => $q,
 		'post_status'         => 'publish',
-		'ignore_sticky_posts' => 1,
-		'posts_per_page'      => 10,
-		'post_type'			  => 'cities'
+		'posts_per_page'      => 10
 	) );
 	if ( $search_results->have_posts() ) :
 		while ( $search_results->have_posts() ) : $search_results->the_post();
