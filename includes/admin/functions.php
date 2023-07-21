@@ -288,8 +288,7 @@ function belingogeo_translit_city($title) {
 }
 
 add_filter( 'posts_where', 'belingogeo_posts_where', 10, 2 );
-function belingogeo_posts_where( $where, &$wp_query )
-{
+function belingogeo_posts_where( $where, $wp_query ) {
     global $wpdb;
     if ( $title = $wp_query->get( 'search_city' ) ) {
         $where .= " AND " . $wpdb->posts . ".post_title LIKE '%" . esc_sql( $wpdb->esc_like( $title ) ) . "%'";
