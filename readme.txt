@@ -36,6 +36,8 @@ Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram chan
 = 1.8.7 =
 * fixed city detection if result is empty
 * fix scripts and styles path for admin
+* fix search city in admin
+* fix warning errors
 
 = 1.8.6 =
 * Fix default city
