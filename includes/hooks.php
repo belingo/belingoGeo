@@ -1,44 +1,15 @@
 <?php
 
-add_filter('the_title', 'belingogeo_the_title', 99, 2);
-function belingogeo_the_title( $title, $id = null) {
+add_filter('the_title', 'belingogeo_city_title', 99, 1);
+add_filter('wp_title', 'belingogeo_city_title', 99, 1);
+function belingogeo_city_title( $title ) {
 
 	if(!is_admin()) {
-		$title = preg_replace('/\[belingogeo_city_field field="([^"]*)"\]/', do_shortcode('$0'), $title);
-		$title = preg_replace('/\[belingogeo_city_content\]([^\[]*)\[belingogeo_city_content\]/', do_shortcode('$0'), $title);
-		$title = preg_replace('/\[belingogeo_city_content city="([^"]*)"\]([^\[]*)\[belingogeo_city_content\]/', do_shortcode('$0'), $title);
-
-		// deprecated shortcodes
-		$title = str_replace('[city]', do_shortcode('[city]'), $title);
-		$title = str_replace('[city_padej1]', do_shortcode('[city_padej1]'), $title);
-		$title = str_replace('[city_padej2]', do_shortcode('[city_padej2]'), $title);
-		$title = str_replace('[city_padej3]', do_shortcode('[city_padej3]'), $title);
-		$title = str_replace('[city_phone]', do_shortcode('[city_phone]'), $title);
-		$title = str_replace('[city_address]', do_shortcode('[city_address]'), $title);
+		$title = do_shortcode($title);
 	}
 	
 	return $title;
 
-}
-
-add_filter('wp_title', 'belingogeo_city_title', 99, 3);
-function belingogeo_city_title($title, $sep, $seplocation) {
-
-	if(!is_admin()) {
-		$title = preg_replace('/\[belingogeo_city_field field="([^"]*)"\]/', do_shortcode('$0'), $title);
-		$title = preg_replace('/\[belingogeo_city_content\]([^\[]*)\[belingogeo_city_content\]/', do_shortcode('$0'), $title);
-		$title = preg_replace('/\[belingogeo_city_content city="([^"]*)"\]([^\[]*)\[belingogeo_city_content\]/', do_shortcode('$0'), $title);
-
-		// deprecated shortcodes
-		$title = str_replace('[city]', do_shortcode('[city]'), $title);
-		$title = str_replace('[city_padej1]', do_shortcode('[city_padej1]'), $title);
-		$title = str_replace('[city_padej2]', do_shortcode('[city_padej2]'), $title);
-		$title = str_replace('[city_padej3]', do_shortcode('[city_padej3]'), $title);
-		$title = str_replace('[city_phone]', do_shortcode('[city_phone]'), $title);
-		$title = str_replace('[city_address]', do_shortcode('[city_address]'), $title);
-	}
-
-	return $title;
 }
 
 remove_filter('template_redirect','redirect_canonical');

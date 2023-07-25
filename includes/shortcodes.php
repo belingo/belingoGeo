@@ -58,6 +58,8 @@ function belingogeo_city_content_shortcode($atts, $content) {
 		$result = $content;
 	}
 
+	$result = do_shortcode($result);
+
 	return apply_filters( 'belingogeo_city_content', $result );
 
 }
