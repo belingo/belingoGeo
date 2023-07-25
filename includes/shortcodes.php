@@ -40,25 +40,49 @@ add_shortcode("belingogeo_city_content", "belingogeo_city_content_shortcode");
 function belingogeo_city_content_shortcode($atts, $content) {
 
 	$atts = shortcode_atts( [
-		'city' => '',
+		'city' 			=> '',
+		'exclude'		=> 0
 	], $atts );
 
-	$result = '';
+	$exclude = (int)$atts['exclude'];
 
-	$city = belingoGeo_get_current_city();
-	$default_city = belingogeo_get_default_city();
-	if($city) {
-		if($atts['city'] != '' && $atts['city'] == get_query_var('geo_city')) {
-			$result = $content;
-		}
-		if($atts['city'] != '' && !get_query_var('geo_city') && $default_city && $atts['city'] = $default_city->get_slug()) {
-			$result = $content;
-		}
-	}elseif($atts['city'] == '' && !get_query_var('geo_city')) {
-		$result = $content;
+	if(!empty($atts['city'])) {
+		$atts_city = explode(",", $atts['city']);
+	}else{
+		$atts_city = '';
 	}
 
-	$result = do_shortcode($result);
+	$result = '';
+	$show_content = false;
+
+	$current_city = belingoGeo_get_current_city();
+	$default_city = belingogeo_get_default_city();
+
+	if($current_city) {
+		if(is_array($atts_city)) {
+			if($exclude == 0) {
+				if(in_array($current_city->get_slug(), $atts_city)) {
+					$show_content = true;
+				}
+			}else{
+				if(!in_array($current_city->get_slug(), $atts_city)) {
+					$show_content = true;
+				}
+			}
+		}else{
+			if($exclude == 1 || ($default_city && $default_city->get_slug() == $current_city->get_slug())) {
+				$show_content = true;
+			}
+		}
+	}elseif(!$current_city && !is_array($atts_city)) {
+		if($exclude == 0) {
+			$show_content = true;
+		}
+	}
+
+	if($show_content) {
+		$result = do_shortcode($content);
+	}
 
 	return apply_filters( 'belingogeo_city_content', $result );
 
