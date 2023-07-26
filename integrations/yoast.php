@@ -26,4 +26,19 @@ function belingoGeo_wpseo_opengraph_urls($u) {
 	}
 }
 
+add_filter( 'wpseo_schema_webpage', 'belingogeo_wpseo_schema_webpage', 10, 1 );
+function belingogeo_wpseo_schema_webpage( $data ) {
+
+	if(isset($data['name'])) {
+		$data['name'] = do_shortcode($data['name']);
+	}
+
+	if(isset($data['description'])) {
+		$data['description'] = do_shortcode($data['description']);
+	}
+
+	return $data;
+
+}
+
 ?>
