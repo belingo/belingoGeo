@@ -32,6 +32,24 @@ function belingogeo_insert_city_url($url, $city) {
 
 }
 
+function belingogeo_is_city_in_url($url) {
+
+	$pathAr = explode("/", $url);
+	if(is_array($pathAr)) {
+		foreach($pathAr as $path) {
+			if(!empty($path)) {
+				$city = belingogeo_get_city_by('slug', $path);
+				if($city) {
+					return $city;
+				}
+			}
+		}
+	}
+
+	return false;
+
+}
+
 function belingogeo_remove_city_url($url, $city) {
 
 	$charset = mb_detect_encoding($url);
