@@ -7,8 +7,8 @@ function belingogeo_load_cities() {
 	belingogeo_load_template('before_cities_list.php');
 	$args = [
 		'posts_per_page' => -1,
-		'orderby' => 'name',
-		'order' => 'asc'
+		'orderby' => 'title',
+		'order' => 'ASC'
 	];
 
 	$args = apply_filters('belingogeo_load_cities_args', $args);
