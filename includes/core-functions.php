@@ -341,7 +341,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 		$request_uri = '';
 	}
 	
-	if(preg_match('/sitemap.*\.xml/', $request_uri)) {
+	if(preg_match('/sitemap.*\.xml/', $request_uri) && get_option('belingo_geo_url_type') != 'subdomain') {
 		return true;
 	}
 
