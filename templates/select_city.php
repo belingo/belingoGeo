@@ -16,10 +16,16 @@ defined( 'ABSPATH' ) || exit;
   <div id="popup-window-content-cityChange" class="popup-window-content">
     <div class="bx-sls">
       <div class="bx-ui-sls-quick-locations quick-locations" style="overflow-x: scroll;height: 300px;">
+        <?php
+          do_action('belingogeo_before_cities_list_container');
+        ?>
         <div class="quick-locations__title"><?php esc_html_e('Choose from the list:', 'belingogeo'); ?></div>
           <div class="quick-locations__values__container"></div>
           <div style="clear:both;"></div>
         </div>
+        <?php
+          do_action('belingogeo_after_cities_list_container');
+        ?>
     </div>
     <div class="block-info">
       <div class="block-info__title"><?php esc_html_e('Didn\'t find your city?', 'belingogeo'); ?></div>

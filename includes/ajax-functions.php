@@ -11,6 +11,11 @@ function belingogeo_load_cities() {
 		'order' => 'ASC'
 	];
 
+	if(isset($_POST['q'])) {
+		$q = sanitize_text_field($_POST['q']);
+		$args['s'] = $q;
+	}
+
 	$args = apply_filters('belingogeo_load_cities_args', $args);
 
 	$cities = belingoGeo_get_cities($args);

@@ -83,6 +83,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_filter_links_by_url');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_slug_generation');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_woo_auto_detect_city_checkout');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_search_in_popup');
 	add_settings_section( 'belingo_geo_basic', __('Basic', 'belingogeo'), '', $settings_page );
 	add_settings_section( 'belingo_geo_excludes', __('Exceptions', 'belingogeo'), '', $settings_page );
 
@@ -355,6 +356,22 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_basic_woo_auto_detect_city_checkout',
 			'descr' 	=> __('Automatic city detection on the WooCommerce checkout page', 'belingogeo'),
+			'post_type'	=> false,
+			'disabled'  => true,
+			'is_pro'	=> true
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_enable_search_in_popup', 
+		__('Enable city search by pop-up window', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_basic_enable_search_in_popup',
+			'descr' 	=> __('The option displays a city search in a pop-up list of cities', 'belingogeo'),
 			'post_type'	=> false,
 			'disabled'  => true,
 			'is_pro'	=> true
