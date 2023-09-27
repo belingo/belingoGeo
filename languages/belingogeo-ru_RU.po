@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - belingoGeo - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-21 14:48+0000\n"
+"PO-Revision-Date: 2023-09-27 18:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,11 +13,11 @@ msgstr ""
 "Project-Id-Version: Plugins - belingoGeo - Stable (latest release)\n"
 "Language-Team: Русский"
 
-#: includes/admin/settings.php:29
+#: includes/admin/settings.php:31
 msgid "- E-mail for communication with technical support specialists."
 msgstr "- Электронная почта для связи со специалистами технической поддержки."
 
-#: includes/admin/settings.php:30
+#: includes/admin/settings.php:32
 msgid ""
 "- Our telegram channel, where you can find out the latest news and "
 "participate in the development of our products."
@@ -25,7 +25,7 @@ msgstr ""
 "- Наш канал в Telegram, где вы можете узнать последние новости и принять "
 "участие в разработке наших товаров."
 
-#: includes/admin/settings.php:28
+#: includes/admin/settings.php:30
 msgid "- Our website."
 msgstr "- Наш сайт."
 
@@ -37,7 +37,7 @@ msgstr "О плагине"
 msgid "Add city"
 msgstr "Добавить город"
 
-#: includes/admin/settings.php:295
+#: includes/admin/settings.php:297
 msgid "Add city to breadcrumbs"
 msgstr "Добавить город в хлебные крошки"
 
@@ -53,16 +53,16 @@ msgstr "Дополнительные точки"
 msgid "Address"
 msgstr "Адрес"
 
-#: includes/admin/settings.php:351 includes/admin/settings.php:358
+#: includes/admin/settings.php:353 includes/admin/settings.php:360
 msgid "Automatic city detection on the WooCommerce checkout page"
 msgstr ""
 "Автоматическое определение города на странице оформления заказа WooCommerce"
 
-#: includes/admin/settings.php:87
+#: includes/admin/settings.php:89
 msgid "Basic"
 msgstr "Общие"
 
-#: includes/admin/settings.php:44
+#: includes/admin/settings.php:46
 msgid "Belingo Geo Settings"
 msgstr "Настройки BelingoGeo"
 
@@ -78,7 +78,7 @@ msgstr "Belingo.GeoCiy"
 msgid "BelingoGeo plugin settings"
 msgstr "Настройки плагина BelingoGeo"
 
-#: includes/admin/settings.php:316
+#: includes/admin/settings.php:318
 msgid ""
 "By default, the plugin replaces links using internal functions that "
 "determine the city, but when using caching, problems may arise, to eliminate "
@@ -88,7 +88,7 @@ msgstr ""
 "города, но при использовании кеширования могут возникнуть проблемы, для их "
 "устранения можно попробовать использовать эту опцию"
 
-#: includes/admin/settings.php:192
+#: includes/admin/settings.php:194
 msgid "Categories"
 msgstr "Рубрики"
 
@@ -109,13 +109,13 @@ msgstr "Города"
 msgid "City"
 msgstr "Город"
 
-#: includes/admin/settings.php:102
+#: includes/admin/settings.php:104
 msgid ""
 "City in subdirectory (the link will look like this: example.com/samara/)"
 msgstr ""
 "Город в поддиректории (ссылка будет выглядеть так: example.com/samara/)"
 
-#: includes/admin/settings.php:107
+#: includes/admin/settings.php:109
 msgid "City in subdomain (the link will look like this: samara.example.com)"
 msgstr "Город в субдомене (ссылка будет выглядеть так: samara.example.com)"
 
@@ -127,23 +127,27 @@ msgstr "Продолжить без города"
 msgid "Dative"
 msgstr "Дательный падеж"
 
-#: includes/admin/settings.php:120
+#: includes/admin/settings.php:122
 msgid "Default city"
 msgstr "Город по умолчанию"
 
-#: includes/admin/settings.php:281
+#: includes/admin/settings.php:283
 msgid "Definition of a city outside the list"
 msgstr "Определение города вне списка"
+
+#: includes/admin/settings.php:28
+msgid "Description of all settings of the BelingoGeo plugin"
+msgstr "Описание всех настроек плагина BelingoGeo"
 
 #: templates/select_city.php:31
 msgid "Didn't find your city?"
 msgstr "Не нашли Ваш город?"
 
-#: includes/admin/settings.php:337
+#: includes/admin/settings.php:339
 msgid "Disable forced slug generation for city"
 msgstr "Отключить принудительную генерацию ярлыка для города"
 
-#: includes/admin/settings.php:267
+#: includes/admin/settings.php:269
 msgid "Disable virtual URLs"
 msgstr "Отключить виртуальные URLs"
 
@@ -151,19 +155,19 @@ msgstr "Отключить виртуальные URLs"
 msgid "Edit city"
 msgstr "Изменить город"
 
-#: includes/admin/settings.php:367
+#: includes/admin/settings.php:369
 msgid "Enable city search by pop-up window"
 msgstr "Включить поиск города во всплывающем окне"
 
-#: includes/admin/settings.php:88
+#: includes/admin/settings.php:90
 msgid "Exceptions"
 msgstr "Исключения"
 
-#: includes/admin/settings.php:163
+#: includes/admin/settings.php:165
 msgid "Exclude anything that is not a registered entity"
 msgstr "Исключить все, что не является зарегистрированной сущностью"
 
-#: includes/admin/settings.php:309
+#: includes/admin/settings.php:311
 msgid "Filter links by url"
 msgstr "Фильтровать ссылки по URL"
 
@@ -171,11 +175,11 @@ msgstr "Фильтровать ссылки по URL"
 msgid "Finding..."
 msgstr "Определение..."
 
-#: includes/admin/settings.php:323
+#: includes/admin/settings.php:325
 msgid "Forced confirmation of the city"
 msgstr "Принудительное подтверждение города"
 
-#: includes/admin/settings.php:330
+#: includes/admin/settings.php:332
 msgid ""
 "Forced confirmation of the city without a pop-up window with the question: "
 "\"What is your city?\"."
@@ -187,7 +191,7 @@ msgstr ""
 msgid "Genitive"
 msgstr "Родительный падеж"
 
-#: includes/admin/settings.php:20 includes/admin/settings.php:46
+#: includes/admin/settings.php:20 includes/admin/settings.php:48
 msgid "Go Pro"
 msgstr "Перейти на Pro"
 
@@ -195,6 +199,10 @@ msgstr "Перейти на Pro"
 msgid ""
 "How to create an additional field for the city in the belingoGeo plugin?"
 msgstr "Как создать дополнительное поле для города в плагине belingoGeo?"
+
+#: includes/admin/settings.php:27
+msgid "How to display a link to switch cities anywhere on the site"
+msgstr "Как отобразить ссылку на смену города в любом месте сайта"
 
 #: includes/admin/settings.php:25
 msgid "How to sort cities in belingoGeo plugin?"
@@ -204,7 +212,7 @@ msgstr "Как сортировать города в плагине belingoGeo?
 msgid "https://belingo.ru"
 msgstr "https://belingo.ru"
 
-#: includes/admin/settings.php:142
+#: includes/admin/settings.php:144
 msgid ""
 "If no city is selected, and no default city is specified, you can specify "
 "the text that will be displayed, by default: \"Not Found\"."
@@ -212,11 +220,11 @@ msgstr ""
 "Если город не выбран и город по умолчанию не указан, вы можете указать текст,"
 " который будет отображаться. По умолчанию: «Не найдено»."
 
-#: includes/admin/settings.php:135
+#: includes/admin/settings.php:137
 msgid "If the city is not found"
 msgstr "Если город не найден"
 
-#: includes/admin/settings.php:288
+#: includes/admin/settings.php:290
 msgid ""
 "If this option is enabled, the city will be determined anyway, even if it is "
 "not in the list. Virtual URLs for such a city will not be generated."
@@ -232,7 +240,7 @@ msgstr "На английском"
 msgid "Installing and configuring the belingoGeo plugin"
 msgstr "Установка и настройка плагина belingoGeo"
 
-#: includes/admin/settings.php:92
+#: includes/admin/settings.php:94
 msgid "Link type"
 msgstr "Тип ссылки"
 
@@ -248,37 +256,37 @@ msgstr "Не найден"
 msgid "Not found in trash"
 msgstr "Не найдено в корзине"
 
-#: includes/admin/settings.php:149
+#: includes/admin/settings.php:151
 msgid "Number of urls in the sitemap"
 msgstr "Количество URL-адресов в карте сайта"
 
-#: includes/admin/settings.php:449 includes/admin/settings.php:471
+#: includes/admin/settings.php:451 includes/admin/settings.php:473
 msgid "Only available for Pro version"
 msgstr "Доступно только для версии Pro"
 
-#: includes/admin/settings.php:302
+#: includes/admin/settings.php:304
 msgid "Option to add the city to breadcrumbs on the website."
 msgstr "Возможность добавить город в хлебные крошки на сайте."
 
-#: includes/admin/settings.php:177
+#: includes/admin/settings.php:179
 msgid "Pages"
 msgstr "Страницы"
 
-#: includes/admin/settings.php:184
+#: includes/admin/settings.php:186
 msgid "Pages selected in this list will be excluded from the plugin"
 msgstr ""
 "Указанные страницы будут исключены. Виртуальные url для них создаваться не "
 "будут"
 
-#: includes/admin/settings.php:237
+#: includes/admin/settings.php:239
 msgid "Post types"
 msgstr "Типы записей"
 
-#: includes/admin/settings.php:222
+#: includes/admin/settings.php:224
 msgid "Posts"
 msgstr "Записи"
 
-#: includes/admin/settings.php:229
+#: includes/admin/settings.php:231
 msgid "Posts selected in this list will be excluded from the plugin"
 msgstr ""
 "Указанные записи будут исключены. Виртуальные url для них создаваться не "
@@ -296,7 +304,7 @@ msgstr "Поиск города"
 msgid "Settings"
 msgstr "Настройки"
 
-#: includes/admin/settings.php:61
+#: includes/admin/settings.php:63
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
@@ -304,11 +312,11 @@ msgstr "Настройки сохранены"
 msgid "Show city"
 msgstr "Показать город"
 
-#: includes/admin/settings.php:207
+#: includes/admin/settings.php:209
 msgid "Tags"
 msgstr "Метки"
 
-#: includes/admin/settings.php:252
+#: includes/admin/settings.php:254
 msgid "Taxonomies"
 msgstr "Таксономии"
 
@@ -316,11 +324,11 @@ msgstr "Таксономии"
 msgid "Telephone"
 msgstr "Телефон"
 
-#: includes/admin/settings.php:156
+#: includes/admin/settings.php:158
 msgid "The number of URLs per page in the sitemap"
 msgstr "Количество URL-адресов на странице, в карте сайта"
 
-#: includes/admin/settings.php:374
+#: includes/admin/settings.php:376
 msgid "The option displays a city search in a pop-up list of cities"
 msgstr "Опция отображает поиск города во всплывающем списке городов"
 
@@ -344,7 +352,7 @@ msgstr ""
 "уникальным url для каждого города. Это позволяет сделать контент уникальным "
 "для поисковых систем."
 
-#: includes/admin/settings.php:344
+#: includes/admin/settings.php:346
 msgid ""
 "The plugin automatically generates a slug for the city, this option disables "
 "automatic generation and you can manually specify the slug for the city."
@@ -352,7 +360,7 @@ msgstr ""
 "Плагин автоматически генерирует ярлык для города, эта опция отключает "
 "автоматическую генерацию и вы можете вручную указать ярлык для города."
 
-#: includes/admin/settings.php:199
+#: includes/admin/settings.php:201
 msgid ""
 "The selected headings will be excluded, urls with the city will not be "
 "generated for them, and all posts belonging to this heading will be "
@@ -362,7 +370,7 @@ msgstr ""
 "городом, а все посты, относящиеся к этой рубрике, будут автоматически "
 "исключены"
 
-#: includes/admin/settings.php:244
+#: includes/admin/settings.php:246
 msgid ""
 "The selected post types will be excluded, URLs with the city will not be "
 "generated for them, and all posts of the specified post type will be "
@@ -371,7 +379,7 @@ msgstr ""
 "Выбранные типы записей будут исключены, для них не будут генерироваться URL-"
 "адреса с городом, а все записи указанного типа будут автоматически исключены."
 
-#: includes/admin/settings.php:214
+#: includes/admin/settings.php:216
 msgid ""
 "The selected tags will be excluded, urls with the city will not be generated "
 "for them"
@@ -379,7 +387,7 @@ msgstr ""
 "Выбранные метки будут исключены, для них не будут генерироваться URL-адреса "
 "с городом"
 
-#: includes/admin/settings.php:259
+#: includes/admin/settings.php:261
 msgid ""
 "The selected taxonomies will be excluded, urls with the city will not be "
 "generated for them, and all terms of the specified taxonomy will be "
@@ -389,13 +397,13 @@ msgstr ""
 "адреса с городом, а все термины указанной таксономии будут автоматически "
 "исключены"
 
-#: includes/admin/settings.php:127
+#: includes/admin/settings.php:129
 msgid ""
 "The string is displayed in the select_city shortcode if there is no selected "
 "city"
 msgstr "Строка будет отображаться в шорткоде select_city, если город не выбран"
 
-#: includes/admin/settings.php:170
+#: includes/admin/settings.php:172
 msgid ""
 "This option excludes all pages not related to WP_Post, WP_Term, WP_Post_Type "
 "and WP_Taxonomy. For example archives by date"
@@ -415,7 +423,7 @@ msgstr "Мы доставляем по всему миру"
 msgid "Yes"
 msgstr "Да"
 
-#: includes/admin/settings.php:274
+#: includes/admin/settings.php:276
 msgid "You can disable virtual URLs, the plugin will not generate them"
 msgstr "Можно отключить виртуальные URLs, плагин не будет их генерировать"
 
