@@ -24,10 +24,12 @@ function belingo_geo_about_function($arr) {
 	echo '<div><a target="_blank" href="https://belingo.ru/ustanovka-i-nastrojka-plagina-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('Installing and configuring the belingoGeo plugin', 'belingogeo').'</a></div>';
 	echo '<div><a target="_blank" href="https://belingo.ru/kak-sortirovat-goroda-v-plagine-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('How to sort cities in belingoGeo plugin?', 'belingogeo').'</a></div>';
 	echo '<div><a target="_blank" href="https://belingo.ru/kak-sozdat-dopolnitelnoe-pole-dlya-goroda-v-plagine-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('How to create an additional field for the city in the belingoGeo plugin?', 'belingogeo').'</a></div>';
+	echo '<div><a target="_blank" href="https://belingo.ru/kak-vyvesti-ssylku-dlya-pereklyucheniya-goroda-v-lyubom-meste-sajta/?utm_source=plugin_belingogeo&utm_medium=description">'.__('How to display a link to switch cities anywhere on the site').'</a></div>';
+	echo '<div><a target="_blank" href="https://belingo.ru/opisanie-vsex-nastroek-plagina-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('Description of all settings of the BelingoGeo plugin').'</a></div>';
 	echo '<h2>'.__('Support').'</h2>';
-	echo '<div><a target="_blank" href="https://belingo.ru">https://belingo.ru</a>'.__('- Our website.', 'belingogeo').'</div>';
-	echo '<div><a target="_blank" href="mailto: support@belingo.ru">support@belingo.ru</a>'.__('- E-mail for communication with technical support specialists.', 'belingogeo').'</div>';
-	echo '<div><a target="_blank" href="https://t.me/belingollc">https://t.me/belingollc</a>'.__('- Our telegram channel, where you can find out the latest news and participate in the development of our products.', 'belingogeo').'</div>';
+	echo '<div><a target="_blank" href="https://belingo.ru">https://belingo.ru</a> '.__('- Our website.', 'belingogeo').'</div>';
+	echo '<div><a target="_blank" href="mailto: support@belingo.ru">support@belingo.ru</a> '.__('- E-mail for communication with technical support specialists.', 'belingogeo').'</div>';
+	echo '<div><a target="_blank" href="https://t.me/belingollc">https://t.me/belingollc</a> '.__('- Our telegram channel, where you can find out the latest news and participate in the development of our products.', 'belingogeo').'</div>';
 	echo '</div>';
 
 }
