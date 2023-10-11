@@ -124,6 +124,102 @@ function belingoGeo_select_city_shortcode($atts) {
 
 }
 
+add_shortcode('belingogeo_region_field', 'belingogeo_region_field_shortcode');
+function belingogeo_region_field_shortcode($atts) {
+
+	$atts = shortcode_atts( [
+		'field' => 'bg_regions_phone',
+	], $atts );
+
+	$result = '';
+
+	$city = belingoGeo_get_current_city();
+
+	if(!$city) {
+		$city = belingogeo_get_default_city();
+	}
+
+	if(!$city) {
+		$city = belingoGeo_get_city_by('slug', 'default-city');
+	}
+
+	if($city) {
+		$terms = wp_get_post_terms( $city->get_id(), 'bg_regions', array('fields' => 'ids') );
+		if($terms && is_array($terms) && count($terms)>0) {
+			$region = get_term($terms[0]);
+			if($atts['field'] == 'bg_regions_name') {
+				$result = $region->name;
+			}elseif($atts['field'] == 'bg_regions_slug') {
+				$result = $region->slug;
+			}else{
+				$meta = get_term_meta($region->term_id, $atts['field'], true);
+				if($meta && !empty($meta)) {
+					$result = $meta;
+				}
+			}
+		}
+	}
+	
+	return apply_filters( 'belingogeo_region_field', $result );
+
+}
+
+add_shortcode("belingogeo_region_content", "belingogeo_region_content_shortcode");
+function belingogeo_region_content_shortcode($atts, $content) {
+
+	$atts = shortcode_atts( [
+		'region' 			=> '',
+		'exclude'		=> 0
+	], $atts );
+
+	$exclude = (int)$atts['exclude'];
+
+	if(!empty($atts['region'])) {
+		$atts_region = explode(",", $atts['region']);
+	}else{
+		$atts_region = '';
+	}
+
+	$result = '';
+	$show_content = false;
+
+	$current_city = belingoGeo_get_current_city();
+	$default_city = belingogeo_get_default_city();
+
+	if($current_city) {
+		$terms = wp_get_post_terms( $current_city->get_id(), 'bg_regions', array('fields' => 'ids') );
+		if($terms && is_array($terms) && count($terms)>0) {
+			$region = get_term($terms[0]);
+			if(is_array($atts_region)) {
+				if($exclude == 0) {
+					if(in_array($region->slug, $atts_region)) {
+						$show_content = true;
+					}
+				}else{
+					if(!in_array($region->slug, $atts_region)) {
+						$show_content = true;
+					}
+				}
+			}else{
+				if($exclude == 1 || ($default_city && $default_city->get_slug() == $current_city->get_slug())) {
+					$show_content = true;
+				}
+			}
+		}
+	}elseif(!$current_city && !is_array($atts_region)) {
+		if($exclude == 0) {
+			$show_content = true;
+		}
+	}
+
+	if($show_content) {
+		$result = do_shortcode($content);
+	}
+
+	return apply_filters( 'belingogeo_region_content', $result );
+
+}
+
 /**
 *
 * Next are deprecated shortcodes, they will be removed soon
