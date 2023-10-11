@@ -29,6 +29,38 @@ function belingoGeo_register_post_types() {
 	];
 	register_post_type( 'cities', $cities_args );
 
+	// Regions
+	register_taxonomy( 'bg_regions', 'cities', [
+		'label'                 => __('Regions', 'belingogeo'),
+		'labels'                => [
+			'name'              => __('Regions', 'belingogeo'),
+			'singular_name'     => __('Region', 'belingogeo'),
+			'search_items'      => __('Search regions', 'belingogeo'),
+			'all_items'         => __('All regions', 'belingogeo'),
+			'view_item '        => __('View regions', 'belingogeo'),
+			'parent_item'       => __('Parent region', 'belingogeo'),
+			'parent_item_colon' => __('Parent region:', 'belingogeo'),
+			'edit_item'         => __('Edit region', 'belingogeo'),
+			'update_item'       => __('Update region', 'belingogeo'),
+			'add_new_item'      => __('Add new region', 'belingogeo'),
+			'new_item_name'     => __('New region name', 'belingogeo'),
+			'menu_name'         => __('Region', 'belingogeo'),
+			'back_to_items'     => __('← Back to region', 'belingogeo')
+		],
+		'description'           => '',
+		'public'                => false,
+		'show_ui'               => true,
+		'show_in_menu'          => 'belingo_geo_settings.php',
+		'hierarchical'          => false,
+
+		'rewrite'               => false,
+		'capabilities'          => array(),
+		'meta_box_cb'           => null,
+		'show_admin_column'     => true,
+		'show_in_rest'          => null,
+		'rest_base'             => null
+	] );
+
 }
 
 add_action( "admin_init", "belingoGeo_cities_fields", 1 );
@@ -399,6 +431,62 @@ function belingoGeo_get_tags_ajax_callback() {
 	die;
 }
 
+add_action( 'bg_regions_add_form_fields', 'belingogeo_bg_regions_add_term_fields' );
+function belingogeo_bg_regions_add_term_fields( $taxonomy ) {
+
+	echo '<div class="form-field">
+			<label for="bg_regions_phone">'.__('Telephone', 'belingogeo').'</label>
+			<input type="text" name="bg_regions_phone" id="bg_regions_phone" />
+		</div>
+		<div class="form-field">
+			<label for="bg_regions_address">'.__('Address', 'belingogeo').'</label>
+			<input type="text" name="bg_regions_address" id="bg_regions_address" />
+		</div>';
+
+}
+
+add_action( 'bg_regions_edit_form_fields', 'belingogeo_bg_regions_edit_term_fields', 10, 2 );
+function belingogeo_bg_regions_edit_term_fields( $term, $taxonomy ) {
+
+	$phone = get_term_meta( $term->term_id, 'bg_regions_phone', true );
+	$address = get_term_meta( $term->term_id, 'bg_regions_address', true);
+
+	echo '<tr class="form-field">
+			<th><label for="bg_regions_phone">'.__('Telephone', 'belingogeo').'</label></th>
+			<td>
+				<input name="bg_regions_phone" id="bg_regions_phone" type="text" value="'.esc_attr( $phone ).'">
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th><label for="bg_regions_address">'.__('Address', 'belingogeo').'</label></th>
+			<td>
+				<input name="bg_regions_address" id="bg_regions_address" type="text" value="'.esc_attr( $address ).'">
+			</td>
+		</tr>';
+
+}
+
+add_action( 'created_bg_regions', 'belingogeo_bg_regions_save_term_fields' );
+add_action( 'edited_bg_regions', 'belingogeo_bg_regions_save_term_fields' );
+function belingogeo_bg_regions_save_term_fields( $term_id ) {
+	
+	if(isset($_POST['bg_regions_phone'])) {
+		update_term_meta(
+			$term_id,
+			'bg_regions_phone',
+			sanitize_text_field( $_POST['bg_regions_phone'] )
+		);
+	}
+
+	if(isset($_POST['bg_regions_address'])) {
+		update_term_meta(
+			$term_id,
+			'bg_regions_address',
+			sanitize_text_field( $_POST['bg_regions_address'] )
+		);
+	}
+	
+}
 
 add_action( 'admin_enqueue_scripts', 'belingoGeo_scripts_admin' );
 function belingoGeo_scripts_admin() {
