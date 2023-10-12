@@ -205,6 +205,10 @@ function belingogeo_region_content_shortcode($atts, $content) {
 					$show_content = true;
 				}
 			}
+		}else{
+			if($exclude == 1 && is_array($atts_region)) {
+				$show_content = true;
+			}
 		}
 	}elseif(!$current_city && !is_array($atts_region)) {
 		if($exclude == 0) {
