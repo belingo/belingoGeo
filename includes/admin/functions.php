@@ -293,6 +293,19 @@ function belingoGeo_save_city( $post_id ) {
 	}
 
 }
+
+add_filter( 'wp_unique_term_slug', 'belingogeo_unique_term_slug_filter', 10, 3 );
+function belingogeo_unique_term_slug_filter( $slug, $term, $original_slug ){
+
+	if($term->taxonomy == 'bg_regions') {
+		$belingo_geo_basic_forced_region_slug_generation = get_option('belingo_geo_basic_forced_region_slug_generation');
+		if(!$belingo_geo_basic_forced_region_slug_generation) {
+			$slug = sanitize_title( belingogeo_translit_city( $term->name) );
+		}
+	}
+
+	return $slug;
+}
  
 function belingogeo_translit_city($title) {
 	

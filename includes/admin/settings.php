@@ -10,7 +10,53 @@ function belingoGeo_rewrite_rules_settings() {
 	add_menu_page( __('BelingoGeo plugin settings', 'belingogeo'), $menu_name, 'edit_others_posts', 'belingo_geo_settings.php', 'belingo_geo_function', plugins_url( 'belingogeo/images/logo_mini_20x20.png' ), 6 );
 	add_submenu_page( 'belingo_geo_settings.php', __('Regions', 'belingogeo'), __('Regions', 'belingogeo'), 'edit_others_posts', '/edit-tags.php?taxonomy=bg_regions&post_type=cities');
 	add_submenu_page( 'belingo_geo_settings.php', __('BelingoGeo plugin settings', 'belingogeo'), __('Settings', 'belingogeo'), 'edit_others_posts', 'belingo_geo_settings.php');
+	add_submenu_page( 'belingo_geo_settings.php', __('Import', 'belingogeo'), __('Import', 'belingogeo'), 'edit_others_posts', 'belingogeo_import', 'belingogeo_import_func');
+	add_submenu_page( 'belingo_geo_settings.php', __('Export', 'belingogeo'), __('Export', 'belingogeo'), 'edit_others_posts', 'belingogeo_export', 'belingogeo_export_func');
 	add_submenu_page( 'belingo_geo_settings.php', __('About plugin', 'belingogeo'), __('About plugin', 'belingogeo'), 'edit_others_posts', 'belingo_geo_about.php', 'belingo_geo_about_function');
+}
+
+function belingogeo_download_example() {
+
+	if(isset($_GET['example'])) {
+		$example = BELINGO_GEO_PLUGIN_DIR.'/examples/'.sanitize_text_field($_GET['example']);
+		belingogeo_download_csv_file($example);
+		exit;
+	}
+
+}
+
+function belingogeo_import_func($arr) {
+
+	belingogeo_download_example();
+
+	echo '<div class="wrap">';
+	echo '<h1 class="wp-heading-inline">'.__('Import', 'belingogeo').'</h1>';
+	echo '<p>';
+	echo str_replace( '<a>', '<a href="admin.php?page=belingogeo_import&example=example1.csv">', __('Upload a list of cities in CSV format, <a>download</a> an example file.', 'belingogeo') );
+	echo '<br>';
+	echo str_replace( '<a>', '<a href="admin.php?page=belingogeo_import&example=all_cities_rf.csv">', __('All cities of Russia - <a>download</a>', 'belingogeo') );
+	echo '</p>';
+	echo '<p style="color:red;">'.__('Attention! Loading all cities at once can be difficult and depends on the settings and limitations of your hosting provider. In this case, we recommend splitting the file into several parts.', 'belingogeo').'</p>';
+	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
+		belingogeopro_import_func();
+	}else{
+		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
+	}
+	echo '</div>';
+
+}
+
+function belingogeo_export_func($arr) {
+
+	echo '<div class="wrap">';
+	echo '<h1 class="wp-heading-inline">'.__('Export', 'belingogeo').'</h1>';
+	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
+		belingogeopro_export_func();
+	}else{
+		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
+	}
+	echo '</div>';
+
 }
 
 function belingo_geo_about_function($arr) {
@@ -27,11 +73,14 @@ function belingo_geo_about_function($arr) {
 	echo '<div><a target="_blank" href="https://belingo.ru/kak-sozdat-dopolnitelnoe-pole-dlya-goroda-v-plagine-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('How to create an additional field for the city in the belingoGeo plugin?', 'belingogeo').'</a></div>';
 	echo '<div><a target="_blank" href="https://belingo.ru/kak-vyvesti-ssylku-dlya-pereklyucheniya-goroda-v-lyubom-meste-sajta/?utm_source=plugin_belingogeo&utm_medium=description">'.__('How to display a link to switch cities anywhere on the site', 'belingogeo').'</a></div>';
 	echo '<div><a target="_blank" href="https://belingo.ru/opisanie-vsex-nastroek-plagina-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('Description of all settings of the BelingoGeo plugin', 'belingogeo').'</a></div>';
-	echo '<h2>'.__('Support').'</h2>';
+	echo '<h2>'.__('Support', 'belingogeo').'</h2>';
 	echo '<div><a target="_blank" href="https://belingo.ru">https://belingo.ru</a> '.__('- Our website.', 'belingogeo').'</div>';
 	echo '<div><a target="_blank" href="mailto: support@belingo.ru">support@belingo.ru</a> '.__('- E-mail for communication with technical support specialists.', 'belingogeo').'</div>';
 	echo '<div><a target="_blank" href="https://t.me/belingollc">https://t.me/belingollc</a> '.__('- Our telegram channel, where you can find out the latest news and participate in the development of our products.', 'belingogeo').'</div>';
 	echo '</div>';
+	echo '<h2>'.__('Our other plugins', 'belingogeo').'</h2>';
+	echo '<div><a href="https://belingo.ru/products/belingoantispam/?utm_source=plugin_belingogeo&utm_medium=description" target="_blank">Belingo Antispam</a> - '.__('A simple and effective anti-spam plugin for WordPress. The plugin\'s algorithm analyzes user behavior on the site and, if necessary, marks it as spam.', 'belingogeo').'</div>';
+	echo '<div><a href="https://belingo.ru/products/belingocredit/?utm_source=plugin_belingogeo&utm_medium=description" target="_blank">Belingo Credit</a> - '.__('A very simple calculator to place on any page of your website using a shortcode. Annuity or differentiated calculation method. For any period and with any interest rate.', 'belingogeo').'</div>';
 
 }
 
@@ -85,6 +134,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_default_text_nonecity');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_filter_links_by_url');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_slug_generation');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_region_slug_generation');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_woo_auto_detect_city_checkout');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_search_in_popup');
 	add_settings_section( 'belingo_geo_basic', __('Basic', 'belingogeo'), '', $settings_page );
@@ -345,6 +395,20 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_basic_forced_slug_generation',
 			'descr' 	=> __('The plugin automatically generates a slug for the city, this option disables automatic generation and you can manually specify the slug for the city.', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_forced_region_slug_generation', 
+		__('Disable forced slug generation for region', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_basic_forced_region_slug_generation',
+			'descr' 	=> __('The plugin automatically generates a slug for the region, this option disables automatic generation and you can manually specify the slug for the region.', 'belingogeo'),
 			'post_type'	=> false
 		)
 	);

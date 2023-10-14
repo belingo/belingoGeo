@@ -77,6 +77,35 @@ function belingogeo_remove_city_url($url, $city) {
 
 }
 
+function belingogeo_download_csv_file($file) {
+
+	ob_end_clean();
+	header('Content-Description: File Transfer');
+	header('Content-Type: text/csv');
+	header("Content-Transfer-Encoding: Binary");
+	header("Content-disposition: attachment; filename=\"" . basename($file) . "\"");
+	header('Content-Transfer-Encoding: binary');
+	header('Expires: 0');
+	header('Cache-Control: must-revalidate');
+	header('Pragma: public');
+	readfile($file);
+
+}
+
+function belingogeo_get_all_meta_keys() {
+    global $wpdb;
+
+    $type = 'cities';
+
+    $res = $wpdb->get_results($wpdb->prepare(
+        "SELECT DISTINCT meta_key FROM {$wpdb->postmeta} WHERE post_id IN
+        (SELECT ID FROM {$wpdb->posts} WHERE post_type = %s)", $type
+    ), ARRAY_A);
+
+    return $res;
+
+}
+
 function belingoGeo_get_cities($args = array()) {
 
 	$cities = [];

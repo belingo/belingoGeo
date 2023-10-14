@@ -178,4 +178,16 @@ add_filter( 'post_link', 'belingogeo_generate_links', 10, 2 );
 add_filter( 'term_link', 'belingogeo_generate_links', 10, 2 );
 add_filter( 'post_type_link', 'belingogeo_generate_links', 10, 2 );
 
+add_action( 'admin_footer-edit.php', function () {
+	global $post_type_object;
+
+	if ( current_user_can( $post_type_object->cap->create_posts ) && $post_type_object->name == 'cities') {
+		?>
+		<script>
+			jQuery('a.page-title-action').after('<a href="admin.php?page=belingogeo_import" class="page-title-action"><?php _e('Import', 'belingogeo'); ?></a> <a href="admin.php?page=belingogeo_export" class="page-title-action"><?php _e('Export', 'belingogeo'); ?></a>');
+		</script>
+		<?php
+	}
+} );
+
 ?>
