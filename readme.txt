@@ -2,8 +2,8 @@
 Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation, geo content, change content based on location
 Requires at least: 4.4.2
-Tested up to: 6.2.2
-Stable tag: 1.8.7
+Tested up to: 6.3.2
+Stable tag: 1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,23 @@ Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram chan
 4. City page
 
 == Changelog ==
+= 1.9 =
+* added ability to use nested shortcodes
+* improved belingogeo_city_content shortcode, added the ability to exclude cities and specify several cities
+* fix yoast json ld for shortcodes
+* fix city in canonical
+* fix default sort cities in popup window
+* fix show links in sitemaps when subdomains is on
+* added new hooks to the plugin templates, added the ability to search for a city, added a search option in the settings
+* Update Select2
+* Added additional information about the plugin
+* Updated language pack
+* Update sypex geo database
+* Regions added
+* Added 2 new shortcodes: belingogeo_region_field, belingogeo_region_content
+* fix shortcode belingogeo_region_content
+* Added the ability to import/export
+
 = 1.8.7 =
 * fixed city detection if result is empty
 * fix scripts and styles path for admin

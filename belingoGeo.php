@@ -5,7 +5,7 @@
  * Description: The plugin adds the ability to select cities, unique pages are created with a unique url for each city. This allows you to uniqueize content for search engines.
  * Author URI:  https://belingo.ru
  * Author:      Belingo llc
- * Version:     1.8.7
+ * Version:     1.9
  * Text Domain: belingogeo
  * Domain Path: /languages
  */
@@ -36,7 +36,7 @@ require_once 'includes/hooks.php';
 require_once 'integrations/woocommerce.php';
 require_once 'integrations/yoast.php';
 
-define("BELINGO_GEO_VERSION", '1.8.7');
+define("BELINGO_GEO_VERSION", '1.9');
 
 add_action('template_redirect', 'belingoGeo_init_city');
 
