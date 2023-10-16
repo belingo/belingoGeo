@@ -137,6 +137,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_region_slug_generation');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_woo_auto_detect_city_checkout');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_search_in_popup');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_add_city_to_woo_page_title');
 	add_settings_section( 'belingo_geo_basic', __('Basic', 'belingogeo'), '', $settings_page );
 	add_settings_section( 'belingo_geo_excludes', __('Exceptions', 'belingogeo'), '', $settings_page );
 
@@ -445,6 +446,22 @@ function belingo_geo_settings() {
 		)
 	);
 
+	add_settings_field( 
+		'belingo_geo_basic_add_city_to_woo_page_title', 
+		__('Add a city to the header of the WooCommerce category', 'belingogeo'), 
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'text',
+			'option_name' => 'belingo_geo_basic_add_city_to_woo_page_title',
+			'descr' 	=> __('You can specify any shortcode, it will be added to the woocommerce category header.', 'belingogeo'),
+			'post_type'	=> false,
+			'disabled'	=> true,
+			'is_pro'	=> true
+		)
+	);
+
 }
 add_action( 'admin_init', 'belingo_geo_settings' );
 
@@ -492,8 +509,18 @@ function belingo_geo_display_settings($args) {
 				break;
 
 			case 'text':
-				echo "<input type='text' id='".esc_attr($option_name)."' name='" . esc_attr($option_name) . "' value='".esc_attr(get_option($option_name))."' style='min-width: 300px;'>";
-				echo "<p class='description'>".esc_html($descr)."</p>";
+				echo "<input type='text' id='".esc_attr($option_name)."' name='" . esc_attr($option_name) . "' value='".esc_attr(get_option($option_name))."' style='min-width: 300px;'";
+				if(isset($disabled) && $disabled) {
+					echo ' disabled="disabled"';
+				}
+				echo ">";
+				echo "<p class='description'>".esc_html($descr);
+				if(isset($is_pro) && $is_pro) {
+					echo " <span style=\"color:red;\">";
+					_e('Only available for Pro version', 'belingogeo');
+					echo "</span>";
+				}
+				echo "</p>";
 				break; 
 
 			case 'simple-text':
