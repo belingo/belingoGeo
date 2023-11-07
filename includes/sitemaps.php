@@ -313,16 +313,20 @@ function belingoGeo_get_xml($urls) {
 		header( $header, true );
 	}
 
-	echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+	$headers_string = '';
+
+	$headers_string .= '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 
 	if(check_url(plugins_url('/wordpress-seo/css/main-sitemap.xsl'))) {
-		echo '<?xml-stylesheet type="text/xsl" href="'.plugins_url('/wordpress-seo/css/main-sitemap.xsl').'"?>';
+		$headers_string .= '<?xml-stylesheet type="text/xsl" href="'.plugins_url('/wordpress-seo/css/main-sitemap.xsl').'"?>';
 	}
 
-	echo	 '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" '
+	$headers_string .=	 '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" '
 			. 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd '
 			. 'http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" '
 			. 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+	echo apply_filters('belingogeo_xml_sitemap_headers_string', $headers_string);
 
 	foreach ($urls as $key => $url) {
 		echo belingoGeo_get_xml_sitemap_url($url);
