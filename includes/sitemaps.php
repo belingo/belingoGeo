@@ -79,6 +79,7 @@ function belingogeo_modify_yaost_sitemap() {
 
 	$args = array(
        'public'   => true,
+       'publicly_queryable' => true,
        '_builtin' => false,
     );
     $arr_post_types_exclude = get_option('belingo_geo_exclude_post_types');
