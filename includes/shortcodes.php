@@ -106,18 +106,38 @@ function belingoGeo_select_city_shortcode($atts) {
 
 	$data = [];
 
-	$args = [
-        'posts_per_page' => -1,
-        'orderby' => 'name',
-        'order' => 'asc'
-    ];
-
-    $args = apply_filters('belingogeo_popup_cities_args', $args);
-
-    $data['cities'] = belingoGeo_get_cities($args);
-
 	ob_start();
 	belingogeo_load_template('select_city.php', $data);
+	$content = ob_get_contents();
+	ob_end_clean();
+	return $content;
+
+}
+
+add_shortcode("belingogeo_popup_select_city", "belingoGeo_popup_select_city_shortcode");
+function belingoGeo_popup_select_city_shortcode($atts) {
+
+	$data = [];
+
+	$data['header'] = get_option('belingo_geo_basic_popup_window_header');
+	$data['text1'] = get_option('belingo_geo_basic_popup_window_text1');
+	$data['text2'] = get_option('belingo_geo_basic_popup_window_text2');
+
+	ob_start();
+	belingogeo_load_template('popup_select_city.php', $data);
+	$content = ob_get_contents();
+	ob_end_clean();
+	return $content;
+
+}
+
+add_shortcode("belingogeo_selector", "belingoGeo_selector_shortcode");
+function belingoGeo_selector_shortcode($atts) {
+
+	$data = [];
+
+	ob_start();
+	belingogeo_load_template('selector.php', $data);
 	$content = ob_get_contents();
 	ob_end_clean();
 	return $content;

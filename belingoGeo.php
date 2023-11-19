@@ -50,6 +50,9 @@ function belingoGeo_install() {
 	update_option('belingo_geo_exclude_nonobject', 1);
 	update_option('belingo_geo_url_type', 'subdirectory');
 	update_option('belingo_geo_sitemap_per_page', 1000);
+	update_option('belingo_geo_basic_popup_window_header', __('Your delivery region', 'belingogeo'));
+	update_option('belingo_geo_basic_popup_window_text1', __('Didn\'t find your city?', 'belingogeo'));
+	update_option('belingo_geo_basic_popup_window_text2', __('We deliver worldwide', 'belingogeo'));
 
 	flush_rewrite_rules();
 

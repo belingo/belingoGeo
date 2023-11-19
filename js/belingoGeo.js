@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
 		action: 'get_widget_city'
 	}
 	jQuery.post(belingoGeo.ajaxurl, data, function(response) {
-		jQuery('#geolocation__value').html(response);
+		jQuery('.geolocation__value').html(response);
 	});
 
 	var data = { 
@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
 		back_url: belingoGeo.backurl
 	}
 	jQuery.post(belingoGeo.ajaxurl, data, function(question) {
-		jQuery('#geolocationChangeCity').after(question);
+		jQuery('.geolocation__link').after(question);
 	});
 
 	jQuery(document).on('click','.select_geo_city', function(e) {
@@ -64,7 +64,7 @@ jQuery(document).ready(function() {
 		});
 	});
 
-	jQuery(document).on('click','#geolocationChangeCity, .geolocationChangeCity', function() {
+	jQuery(document).on('click','#geolocationChangeCity, .geolocationChangeCity, .geolocation__link', function() {
 		show_popup_window('#cityChange');
 		var data = {
 			action: 'load_cities'

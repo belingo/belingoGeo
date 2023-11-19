@@ -60,6 +60,17 @@ function belingo_geo_scripts() {
 
 }
 
+add_action( 'wp_footer', 'belingogeo_footer_action' );
+function belingogeo_footer_action(){
+
+	$belingo_geo_basic_enable_windows_in_footer = get_option('belingo_geo_basic_enable_windows_in_footer');
+
+	if($belingo_geo_basic_enable_windows_in_footer && $belingo_geo_basic_enable_windows_in_footer == 1) {
+		echo do_shortcode('[belingogeo_popup_select_city]');
+	}
+
+}
+
 add_filter( 'rewrite_rules_array', 'belingogeo_rewrite_rules_array' );
 function belingogeo_rewrite_rules_array( $rules ) {
 

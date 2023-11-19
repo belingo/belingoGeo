@@ -138,6 +138,10 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_woo_auto_detect_city_checkout');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_search_in_popup');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_add_city_to_woo_page_title');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_header');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text1');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text2');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_windows_in_footer');
 	add_settings_section( 'belingo_geo_basic', __('Basic', 'belingogeo'), '', $settings_page );
 	add_settings_section( 'belingo_geo_excludes', __('Exceptions', 'belingogeo'), '', $settings_page );
 
@@ -194,6 +198,62 @@ function belingo_geo_settings() {
 			'type'      => 'text',
 			'option_name' => 'belingo_geo_basic_default_text_nonecity',
 			'descr' 	=> __('If no city is selected, and no default city is specified, you can specify the text that will be displayed, by default: "Not Found".', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_popup_window_header', 
+		__('Popup title with cities', 'belingogeo'), 
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'text',
+			'option_name' => 'belingo_geo_basic_popup_window_header',
+			'descr' 	=> __('Popup title with cities', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_popup_window_text1', 
+		__('Additional text1 in the popup window', 'belingogeo'), 
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'text',
+			'option_name' => 'belingo_geo_basic_popup_window_text1',
+			'descr' 	=> __('Additional text1 in the popup window', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_popup_window_text2', 
+		__('Additional text2 in the popup window', 'belingogeo'), 
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'text',
+			'option_name' => 'belingo_geo_basic_popup_window_text2',
+			'descr' 	=> __('Additional text2 in the popup window', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_enable_windows_in_footer', 
+		__('Connect pop-ups in the site footer', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_basic_enable_windows_in_footer',
+			'descr' 	=> __('Enables pop-up windows in the footer of the site, the option can not be enabled if you placed the shortcode manually', 'belingogeo'),
 			'post_type'	=> false
 		)
 	);
