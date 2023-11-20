@@ -141,6 +141,10 @@ function belingogeo_generate_links($url, $object) {
 	$allow = true;
 	$allow = apply_filters('belingogeo_allow_generate_links', $allow, $url, $object);
 
+	if(is_admin()) {
+		return $url;
+	}
+
 	if(!$allow) {
 		return $url;
 	}

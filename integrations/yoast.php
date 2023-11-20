@@ -36,6 +36,28 @@ function belingoGeo_wpseo_opengraph_urls($u) {
 add_filter( 'wpseo_schema_webpage', 'belingogeo_wpseo_schema_webpage', 10, 1 );
 function belingogeo_wpseo_schema_webpage( $data ) {
 
+	$allow = true;
+	$allow = apply_filters('belingogeo_allow_generate_links', $allow, '', '');
+	$disable_urls = get_option('belingo_geo_basic_disable_url');
+
+	if($allow && !$disable_urls) {
+		if(isset($data['@id'])) {
+			$data['@id'] = belingoGeo_append_city_url($data['@id'], get_query_var('geo_city'));
+		}
+
+		if(isset($data['url'])) {
+			$data['url'] = belingoGeo_append_city_url($data['url'], get_query_var('geo_city'));
+		}
+
+		if(isset($data['breadcrumb']['@id'])) {
+			$data['breadcrumb']['@id'] = belingoGeo_append_city_url($data['breadcrumb']['@id'], get_query_var('geo_city'));
+		}
+
+		if(isset($data['potentialAction'][0]['target'][0])) {
+			$data['potentialAction'][0]['target'][0] = belingoGeo_append_city_url($data['potentialAction'][0]['target'][0], get_query_var('geo_city'));
+		}
+	}
+
 	if(isset($data['name'])) {
 		$data['name'] = do_shortcode($data['name']);
 	}
