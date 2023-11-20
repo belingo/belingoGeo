@@ -10,6 +10,7 @@ function belingoGeo_rewrite_rules_settings() {
 	add_menu_page( __('BelingoGeo plugin settings', 'belingogeo'), $menu_name, 'edit_others_posts', 'belingo_geo_settings.php', 'belingo_geo_function', plugins_url( 'belingogeo/images/logo_mini_20x20.png' ), 6 );
 	add_submenu_page( 'belingo_geo_settings.php', __('Regions', 'belingogeo'), __('Regions', 'belingogeo'), 'edit_others_posts', '/edit-tags.php?taxonomy=bg_regions&post_type=cities');
 	add_submenu_page( 'belingo_geo_settings.php', __('BelingoGeo plugin settings', 'belingogeo'), __('Settings', 'belingogeo'), 'edit_others_posts', 'belingo_geo_settings.php');
+	add_submenu_page( 'belingo_geo_settings.php', __('Woo Price', 'belingogeo'), __('Woo Price', 'belingogeo'), 'edit_others_posts', 'belingogeo_woo_price', 'belingogeo_woo_price_func');
 	add_submenu_page( 'belingo_geo_settings.php', __('Import', 'belingogeo'), __('Import', 'belingogeo'), 'edit_others_posts', 'belingogeo_import', 'belingogeo_import_func');
 	add_submenu_page( 'belingo_geo_settings.php', __('Export', 'belingogeo'), __('Export', 'belingogeo'), 'edit_others_posts', 'belingogeo_export', 'belingogeo_export_func');
 	add_submenu_page( 'belingo_geo_settings.php', __('About plugin', 'belingogeo'), __('About plugin', 'belingogeo'), 'edit_others_posts', 'belingo_geo_about.php', 'belingo_geo_about_function');
@@ -22,6 +23,20 @@ function belingogeo_download_example() {
 		belingogeo_download_csv_file($example);
 		exit;
 	}
+
+}
+
+function belingogeo_woo_price_func($arr) {
+
+	echo '<div class="wrap">';
+	echo '<h1 class="wp-heading-inline">'.__('Woo Price', 'belingogeo').'</h1>';
+	echo '<p>'.__('In this section, you can manage prices in WooCommerce for each city separately.').'</p>';
+	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
+		belingogeopro_woo_price_func();
+	}else{
+		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
+	}
+	echo '</div>';
 
 }
 
