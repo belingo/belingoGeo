@@ -23,9 +23,16 @@ function belingogeo_generate_sitemap() {
 			$urls = belingoGeo_get_sitemap_custom_posts_urls($city,$per_page,$page,$post_type);
 		}
 	}
-		
-	belingoGeo_get_xml($urls);
-	exit;
+	
+	if(is_array($urls) && count($urls) > 0) {
+		belingoGeo_get_xml($urls);
+		exit;
+	}else{
+		global $wp_query;
+		$wp_query->set_404();
+	    status_header( 404 );
+	    nocache_headers();
+	}
 	
 }
 
@@ -150,8 +157,9 @@ function belingogeo_modify_yaost_sitemap() {
 				}
 			}
 			$taxonomies = get_object_taxonomies( array( 'post_type' => $post_type ), 'objects' );
+			$exclude_taxonomies = get_option('belingo_geo_exclude_taxonomies');
 			foreach($taxonomies as $taxonomy) {
-				if($taxonomy->public == 1 && $taxonomy->show_ui == 1) {
+				if($taxonomy->public == 1 && $taxonomy->show_ui == 1 && !array_key_exists($taxonomy->name, $exclude_taxonomies)) {
 					$url = [
 						"loc" => get_site_url() . '/'.$city->get_slug().'_sitemap_tax_'.$taxonomy->name.'.xml',
 						"lastmod" => date('c',time())
@@ -277,20 +285,26 @@ function belingoGeo_get_sitemap_taxonomies_urls($city,$taxonomy) {
 
 	$urls = [];
 
-	$terms = get_terms(array(
-		'taxonomy' => $taxonomy
-	));
-	foreach ($terms as $term) {
-		$loc = get_term_link($term->slug, $taxonomy);
-		$current_city = belingoGeo_get_current_city();
-		if($current_city) {
-			$loc = belingogeo_remove_city_url($loc, $current_city->get_slug());
+	$exclude_taxonomies = get_option('belingo_geo_exclude_taxonomies');
+
+	if(!array_key_exists($taxonomy, $exclude_taxonomies)) {
+
+		$terms = get_terms(array(
+			'taxonomy' => $taxonomy
+		));
+		foreach ($terms as $term) {
+			$loc = get_term_link($term->slug, $taxonomy);
+			$current_city = belingoGeo_get_current_city();
+			if($current_city) {
+				$loc = belingogeo_remove_city_url($loc, $current_city->get_slug());
+			}
+			$loc = belingoGeo_append_city_url($loc, $city);
+			$urls[] = [
+				"loc" => $loc,
+				"lastmod" => date('c',time())
+			];
 		}
-		$loc = belingoGeo_append_city_url($loc, $city);
-		$urls[] = [
-			"loc" => $loc,
-			"lastmod" => date('c',time())
-		];
+
 	}
 
     return $urls;
