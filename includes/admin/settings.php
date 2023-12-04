@@ -649,7 +649,7 @@ function belingo_geo_display_settings($args) {
 					$args = array(
 				       'public'   => true,
 				       '_builtin' => false,
-				       'rewrite'  => true
+				       //'rewrite'  => true
 				    );
 				    $post_types = get_post_types( $args, 'names', 'and' );
 				    foreach ( $post_types  as $post_type ) {
@@ -668,7 +668,7 @@ function belingo_geo_display_settings($args) {
 				if($list == 'taxonomies') {
 					$args = array(
 				       'public'   => true,
-				       'rewrite'  => true,
+				       //'rewrite'  => true,
 				       '_builtin' => false,
 				    );
 				    $taxonomies = get_taxonomies( $args );
