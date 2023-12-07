@@ -140,6 +140,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_taxonomies' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_default_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_disable_url' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_redirect_page' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_finding_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_nonobject');
@@ -401,6 +402,20 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_basic_disable_url',
 			'descr' 	=> __('You can disable virtual URLs, the plugin will not generate them', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_redirect_page', 
+		__('Redirect on page if is exists', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_basic_redirect_page',
+			'descr' 	=> __('When virtual URLs are disabled, you can enable redirection to existing pages. Works only in conjunction with disabled URLs!', 'belingogeo'),
 			'post_type'	=> false
 		)
 	);
