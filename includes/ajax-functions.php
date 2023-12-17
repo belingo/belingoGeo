@@ -124,7 +124,7 @@ function belingoGeo_write_city_cookie() {
 				$back_url = belingoGeo_append_city_url($back_url, $city_slug);
 			}
 
-			$back_url = apply_filters('belingogeo_backurl_in_ajax', $back_url, $is_exclude, $disable_urls);
+			$back_url = apply_filters('belingogeo_backurl_in_ajax', $back_url, $is_exclude, $disable_urls, $city_slug);
 
 			$data['redirect'] = $back_url;
 		}
