@@ -35,17 +35,55 @@ add_action('wp_ajax_nopriv_show_city_question', 'show_city_question');
 add_action('wp_ajax_show_city_question', 'show_city_question');
 function show_city_question() {
 
+	$result = [];
+
 	if(!isset($_COOKIE['geo_city']) && !isset($_COOKIE['nogeo']) && !get_query_var('geo_city')) {
+
 		$city = belingoGeo_check_city();
 
-		$data = [
-			"city" 	   => $city
-		];
+		$belingo_geo_basic_forced_confirmation_city = get_option('belingo_geo_basic_forced_confirmation_city');
+		if($belingo_geo_basic_forced_confirmation_city) {
 
-		belingogeo_load_template('question_city.php', $data);
+			if(isset($_POST['object_id'])) {
+				$object_id = sanitize_text_field($_POST['object_id']);
+			}
+
+			if(isset($_POST['object'])) {
+				$object = sanitize_text_field($_POST['object']);
+			}
+
+			if(isset($_POST['back_url'])) {
+				$back_url = get_site_url().sanitize_url($_POST['back_url']);
+			}
+
+			belingogeo_save_geo_cookie($city->get_name(), $city->get_slug());
+			$is_exclude = belingogeo_is_exclude($object_id, $object, $city->get_slug());
+			$disable_urls = get_option('belingo_geo_basic_disable_url');
+			if(isset($back_url)) {
+				if(!$is_exclude && !$disable_urls) {
+					$back_url = belingoGeo_append_city_url($back_url, $city->get_slug());
+				}
+
+				$back_url = apply_filters('belingogeo_backurl_in_ajax', $back_url, $is_exclude, $disable_urls, $city->get_slug());
+
+				$result['redirect'] = $back_url;
+			}
+		}else{
+
+			$data = [
+				"city" 	   => $city
+			];
+
+
+			ob_start();
+			$result = belingogeo_load_template('question_city.php', $data);
+			$result['show_question'] = ob_get_contents();
+			ob_end_clean();
+
+		}
 	}
 
-	wp_die();
+	wp_send_json($result);
 
 }
 

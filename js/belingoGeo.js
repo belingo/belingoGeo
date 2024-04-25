@@ -27,10 +27,18 @@ jQuery(document).ready(function() {
 
 	var data = { 
 		action: 'show_city_question',
-		back_url: belingoGeo.backurl
+		back_url: belingoGeo.backurl,
+		object_id: belingoGeo.object_id,
+		object: belingoGeo.object,
 	}
-	jQuery.post(belingoGeo.ajaxurl, data, function(question) {
-		jQuery('.geolocation__link').after(question);
+	jQuery.post(belingoGeo.ajaxurl, data, function(response) {
+
+		if(response.redirect) {
+			location.href = response.redirect;
+		}else{
+			jQuery('.geolocation__link').after(response.show_question);
+		}
+
 	});
 
 	jQuery(document).on('click','.select_geo_city', function(e) {

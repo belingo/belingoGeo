@@ -89,17 +89,6 @@ function belingoGeo_init_cityObj() {
 
 }
 
-function belingogeo_forced_confirmation_city() {
-
-	$belingo_geo_basic_forced_confirmation_city = get_option('belingo_geo_basic_forced_confirmation_city');
-
-	if(!isset($_COOKIE['geo_city']) && !isset($_COOKIE['nogeo']) && !get_query_var('geo_city') && $belingo_geo_basic_forced_confirmation_city) {
-		$city = belingoGeo_check_city();
-		belingogeo_save_geo_cookie($city->get_name(), $city->get_slug());
-	}
-
-}
-
 function belingogeo_create_default_city() {
 
 	$default_city = belingogeo_get_city_by('slug', 'default-city');
@@ -120,8 +109,6 @@ function belingoGeo_init_city() {
 	belingogeo_create_default_city();
 
 	belingoGeo_init_cityObj();
-
-	belingogeo_forced_confirmation_city();
 
 	belingoGeo_city_url_redirect();
 

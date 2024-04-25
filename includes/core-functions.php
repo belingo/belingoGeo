@@ -112,7 +112,8 @@ function belingoGeo_get_cities($args = array()) {
 
 	$default_args = [
 		'post_type'   => 'cities',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'suppress_filters' => true
 	];
 
 	$args = array_merge($default_args, $args);
@@ -188,7 +189,8 @@ function belingogeo_get_city_by($by, $value) {
 		$args = [
 			'post_type' 	 => 'cities',
 			'post_status' 	 => 'publish',
-			'posts_per_page' => 1
+			'posts_per_page' => 1,
+			'suppress_filters' => true
 		];
 		if($by == 'slug') {
 			$args['name'] = $value;
@@ -401,6 +403,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 	$exclude_taxonomies = get_option('belingo_geo_exclude_taxonomies');
 	$exclude_tags = get_option('belingo_geo_exclude_tags');
 	$exclude_post_types = get_option('belingo_geo_exclude_post_types');
+	$belingo_geo_exclude_all_posts = get_option('belingo_geo_exclude_all_posts');
 
 	$is_exclude = false;
 
@@ -444,6 +447,12 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 			}
 		}
 
+		if ( $post_obj->post_type == 'post' ) {
+			if($belingo_geo_exclude_all_posts) {
+				$is_exclude = true;
+			}
+		}
+
 	}
 
 	if($object == 'WP_Term') {
@@ -460,6 +469,11 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 		if($term && $term->taxonomy) {
 			if(array_key_exists($term->taxonomy, (array)$exclude_taxonomies)) {
 				$is_exclude = true;
+			}
+			if($belingo_geo_exclude_all_posts) {
+				if($term->taxonomy == 'category' || $term->taxonomy = 'post_tag') {
+					$is_exclude = true;
+				}
 			}
 		}
 
