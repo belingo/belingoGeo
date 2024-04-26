@@ -2,8 +2,8 @@
 Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation, geo content, change content based on location
 Requires at least: 4.4.2
-Tested up to: 6.3.2
-Stable tag: 1.9
+Tested up to: 6.5.2
+Stable tag: 1.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram chan
 
 1. Upload `belingogeo` to the `/wp-content/plugins/` directory.
 2. Activate `Belingo.GeoCity` in your wordpress site if it is not activated already.
-3. Place shortcode [belingogeo_select_city] anywhere on your website page.
+3. Place shortcode [belingogeo_selector] anywhere on your website page.
 
 == Screenshots ==
 1. Settings Page
@@ -33,6 +33,24 @@ Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram chan
 4. City page
 
 == Changelog ==
+= 1.10 =
+* Updating Language Packs
+* Fixed an issue with infinite cloning of the Default city. Now this is a system city, it cannot be deleted
+* The function for downloading CSV examples has been adjusted
+* Added the ability to not display the city confirmation window for the [belingogeo_selector] shortcode
+* Added redirect exception to search page
+* Fixed forced city confirmation when using cache
+* fix new redirect page functions
+* Added an option to redirect to an existing city page
+* remove rewrite:true from post_types and taxonomies in admin
+* fix sitemaps taxonomies and hide empty sitemaps
+* Added the ability to change woocommerce prices depending on the city
+* fix save posts in admin without cities
+* Changed the method of connecting pop-up windows and selector, added the ability to change text in windows from the console
+* Excluded from xml sitemap not publicly_queryable post_types
+* add hook for sitemap headers
+* Added the ability to insert any shortcodes into the woocommerce category header
+
 = 1.9 =
 * added ability to use nested shortcodes
 * improved belingogeo_city_content shortcode, added the ability to exclude cities and specify several cities
