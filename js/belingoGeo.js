@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
 		if(response.redirect) {
 			location.href = response.redirect;
 		}else{
-			jQuery('.geolocation__link').after(response.show_question);
+			jQuery('.geolocation_with_question__link').after(response.show_question);
 		}
 
 	});

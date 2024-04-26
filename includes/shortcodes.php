@@ -134,7 +134,17 @@ function belingoGeo_popup_select_city_shortcode($atts) {
 add_shortcode("belingogeo_selector", "belingoGeo_selector_shortcode");
 function belingoGeo_selector_shortcode($atts) {
 
-	$data = [];
+	$atts = shortcode_atts( [
+		'show_question' => '',
+	], $atts );
+
+	$data = [
+		'show_question' => true
+	];
+
+	if($atts['show_question'] == 'false') {
+		$data['show_question'] = false;
+	}
 
 	ob_start();
 	belingogeo_load_template('selector.php', $data);
