@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Belingo.GeoCiy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-25 20:29+0000\n"
+"POT-Creation-Date: 2024-04-26 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -129,6 +129,10 @@ msgid ""
 "By default, the plugin replaces links using internal functions that "
 "determine the city, but when using caching, problems may arise, to eliminate "
 "it, you can try using this option"
+msgstr ""
+
+#: includes/hooks.php:224
+msgid "Can't delete default city"
 msgstr ""
 
 #: includes/admin/settings.php:337
@@ -418,6 +422,10 @@ msgstr ""
 
 #: includes/admin/settings.php:91
 msgid "Support"
+msgstr ""
+
+#: includes/hooks.php:234
+msgid "System city"
 msgstr ""
 
 #: includes/admin/settings.php:352
