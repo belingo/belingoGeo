@@ -16,9 +16,10 @@ function belingoGeo_rewrite_rules_settings() {
 	add_submenu_page( 'belingo_geo_settings.php', __('About plugin', 'belingogeo'), __('About plugin', 'belingogeo'), 'edit_others_posts', 'belingo_geo_about.php', 'belingo_geo_about_function');
 }
 
+add_action('admin_init', 'belingogeo_download_example');
 function belingogeo_download_example() {
 
-	if(isset($_GET['example'])) {
+	if(isset($_GET['page']) && $_GET['page'] == 'belingogeo_import' && isset($_GET['example'])) {
 		$example = BELINGO_GEO_PLUGIN_DIR.'/examples/'.sanitize_text_field($_GET['example']);
 		belingogeo_download_csv_file($example);
 		exit;
@@ -41,8 +42,6 @@ function belingogeo_woo_price_func($arr) {
 }
 
 function belingogeo_import_func($arr) {
-
-	belingogeo_download_example();
 
 	echo '<div class="wrap">';
 	echo '<h1 class="wp-heading-inline">'.__('Import', 'belingogeo').'</h1>';
@@ -431,7 +430,9 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_basic_redirect_page',
 			'descr' 	=> __('When virtual URLs are disabled, you can enable redirection to existing pages. Works only in conjunction with disabled URLs!', 'belingogeo'),
-			'post_type'	=> false
+			'post_type'	=> false,
+			'disabled'  => true,
+			'is_pro'	=> true
 		)
 	);
 

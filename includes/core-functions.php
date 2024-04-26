@@ -89,8 +89,10 @@ function belingogeo_download_csv_file($file) {
 	@ini_set( 'output_buffering', 'Off' ); // @codingStandardsIgnoreLine
 	@ini_set( 'output_handler', '' ); // @codingStandardsIgnoreLine
 	ignore_user_abort( true );
-	wc_set_time_limit( 0 );
-	wc_nocache_headers();
+	if ( function_exists( 'set_time_limit' ) && false === strpos( ini_get( 'disable_functions' ), 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) { // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.safe_modeDeprecatedRemoved
+		@set_time_limit( 0 ); // @codingStandardsIgnoreLine
+	}
+	nocache_headers();
 	header( 'Content-Type: text/csv; charset=utf-8' );
 	header( 'Content-Disposition: attachment; filename=' . basename($file) );
 	header( 'Pragma: no-cache' );
