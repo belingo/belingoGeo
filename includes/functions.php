@@ -54,6 +54,10 @@ function belingoGeo_city_url_redirect() {
 		$is_exclude = true;
 	}
 
+	if(is_search()) {
+		$is_exclude = true;
+	}
+
 	if(isset($_COOKIE['geo_city']) && !get_query_var('geo_city') && !$disable_urls && !$is_exclude) {
 		$city_url = belingoGeo_append_city_url(get_site_url().$request_uri, sanitize_text_field($_COOKIE['geo_city']));
 		Header("Location: ".$city_url);
