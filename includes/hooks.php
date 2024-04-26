@@ -205,4 +205,37 @@ add_action( 'admin_footer-edit.php', function () {
 	}
 } );
 
+add_filter( 'post_row_actions', 'belingogeo_default_row_actions', 10, 2 );
+function belingogeo_default_row_actions($actions, $post) {
+
+	if($post->post_name == 'default-city') {
+		unset($actions['trash']);
+	}
+
+	return $actions;
+
+}
+
+add_action( 'pre_trash_post', 'belingogeo_restrict_default_deletion', 10, 2 );
+add_filter( 'pre_delete_post', 'belingogeo_restrict_default_deletion', 10, 2 );
+function belingogeo_restrict_default_deletion( $delete, $post ) {
+
+	if($post->post_name == 'default-city') {
+		wp_die( __('Can\'t delete default city', 'belingogeo') );
+	}
+
+	return $delete;
+}
+
+add_filter( 'display_post_states', 'belingogeo_mark_in_city_list_default', 10, 2 );
+function belingogeo_mark_in_city_list_default( $post_states, $post ) {
+
+	if($post->post_name == 'default-city') {
+		$post_states[] = __('System city', 'belingogeo');
+	}
+
+	return $post_states;
+
+}
+
 ?>

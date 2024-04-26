@@ -110,8 +110,6 @@ function belingogeo_create_default_city() {
 
 function belingoGeo_init_city() {
 
-	belingogeo_create_default_city();
-
 	belingoGeo_init_cityObj();
 
 	belingoGeo_city_url_redirect();
