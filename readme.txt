@@ -1,13 +1,13 @@
 === belingoGeo ===
 Contributors: belingo
-Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation, geo content, change content based on location
+Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 4.4.2
 Tested up to: 6.5.2
 Stable tag: 1.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The plugin adds the ability to select cities, unique pages are created with a unique url for each city. This allows you to uniqueize content for search engines.
+The plugin adds the ability to select cities, unique pages are created with a unique url for each city. This allows you to uniqueize content.
 
 == Description ==
 
