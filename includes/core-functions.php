@@ -79,15 +79,22 @@ function belingogeo_remove_city_url($url, $city) {
 
 function belingogeo_download_csv_file($file) {
 
-	ob_end_clean();
-	header('Content-Description: File Transfer');
-	header('Content-Type: text/csv');
-	header("Content-Transfer-Encoding: Binary");
-	header("Content-disposition: attachment; filename=\"" . basename($file) . "\"");
-	header('Content-Transfer-Encoding: binary');
-	header('Expires: 0');
-	header('Cache-Control: must-revalidate');
-	header('Pragma: public');
+	if ( function_exists( 'gc_enable' ) ) {
+		gc_enable(); // phpcs:ignore PHPCompatibility.FunctionUse.NewFunctions.gc_enableFound
+	}
+	if ( function_exists( 'apache_setenv' ) ) {
+		@apache_setenv( 'no-gzip', 1 ); // @codingStandardsIgnoreLine
+	}
+	@ini_set( 'zlib.output_compression', 'Off' ); // @codingStandardsIgnoreLine
+	@ini_set( 'output_buffering', 'Off' ); // @codingStandardsIgnoreLine
+	@ini_set( 'output_handler', '' ); // @codingStandardsIgnoreLine
+	ignore_user_abort( true );
+	wc_set_time_limit( 0 );
+	wc_nocache_headers();
+	header( 'Content-Type: text/csv; charset=utf-8' );
+	header( 'Content-Disposition: attachment; filename=' . basename($file) );
+	header( 'Pragma: no-cache' );
+	header( 'Expires: 0' );
 	readfile($file);
 
 }
