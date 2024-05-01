@@ -168,6 +168,10 @@ function belingoGeo_write_city_cookie() {
 		}
 	}
 
+	if (function_exists('wc_delete_product_transients')) {
+    	wc_delete_product_transients();
+	}
+
 	wp_send_json($data);
 
 }
@@ -186,6 +190,10 @@ function belingoGeo_write_nogeo_cookie() {
 	$back_url = apply_filters('belingogeo_backurl_in_nogeo_ajax', $back_url);
 
 	$data['redirect'] = $back_url;
+
+	if (function_exists('wc_delete_product_transients')) {
+    	wc_delete_product_transients();
+	}
 
 	wp_send_json($data);
 
