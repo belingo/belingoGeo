@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 4.4.2
 Tested up to: 6.5.2
-Stable tag: 1.10
+Stable tag: 1.10.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,9 @@ Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram chan
 4. City page
 
 == Changelog ==
+= 1.10.1 =
+* Fixed WC cache when changing prices for goods and when changing cities
+
 = 1.10 =
 * Updating Language Packs
 * Fixed an issue with infinite cloning of the Default city. Now this is a system city, it cannot be deleted
