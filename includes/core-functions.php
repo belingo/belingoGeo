@@ -370,6 +370,10 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 	}else{
 		$city = belingogeo_get_city_by('slug', $current_city);
 	}
+
+	if(!$city) {
+		return true;
+	}
 	
 	if($city && $city->get_slug() == 'default-city') {
 		return true;

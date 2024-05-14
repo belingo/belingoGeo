@@ -122,14 +122,17 @@ function belingogeo_modify_yaost_sitemap() {
 			continue;
 		}
 
-		$page = 1;
-		while($post_pages >= $page) {
-			$url = [
-				"loc" => get_site_url() . '/'.$city->get_slug().'_post.sitemap'.$page.'.xml',
-				"lastmod" => date('c',time())
-			];
-			$xml .= belingoGeo_get_xml_sitemap($url);
-			$page++;
+		$belingo_geo_exclude_all_posts = get_option('belingo_geo_exclude_all_posts');
+		if(!$belingo_geo_exclude_all_posts) {
+			$page = 1;
+			while($post_pages >= $page) {
+				$url = [
+					"loc" => get_site_url() . '/'.$city->get_slug().'_post.sitemap'.$page.'.xml',
+					"lastmod" => date('c',time())
+				];
+				$xml .= belingoGeo_get_xml_sitemap($url);
+				$page++;
+			}
 		}
 		$page = 1;
 		while($page_pages >= $page) {
@@ -159,7 +162,7 @@ function belingogeo_modify_yaost_sitemap() {
 			$taxonomies = get_object_taxonomies( array( 'post_type' => $post_type ), 'objects' );
 			$exclude_taxonomies = get_option('belingo_geo_exclude_taxonomies');
 			foreach($taxonomies as $taxonomy) {
-				if($taxonomy->public == 1 && $taxonomy->show_ui == 1 && !array_key_exists($taxonomy->name, $exclude_taxonomies)) {
+				if($taxonomy->public == 1 && $taxonomy->show_ui == 1 && !array_key_exists($taxonomy->name, (array)$exclude_taxonomies)) {
 					$url = [
 						"loc" => get_site_url() . '/'.$city->get_slug().'_sitemap_tax_'.$taxonomy->name.'.xml',
 						"lastmod" => date('c',time())
@@ -177,6 +180,11 @@ function belingogeo_modify_yaost_sitemap() {
 function belingoGeo_get_sitemap_post_urls($city,$per_page,$page) {
 
 	$urls = [];
+
+	$belingo_geo_exclude_all_posts = get_option('belingo_geo_exclude_all_posts');
+	if($belingo_geo_exclude_all_posts) {
+		return $urls;
+	}
 
 	// записи
 	$arr_posts_exclude = [];
