@@ -33,7 +33,11 @@ function belingogeo_woo_price_func($arr) {
 	echo '<h1 class="wp-heading-inline">'.__('Woo Price', 'belingogeo').'</h1>';
 	echo '<p>'.__('In this section, you can manage prices in WooCommerce for each city separately.').'</p>';
 	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
-		belingogeopro_woo_price_func();
+		if(function_exists('belingogeopro_woo_price_func')) {
+			belingogeopro_woo_price_func();
+		}else{
+			echo '<p style="color:red;">'.__('You need to update the Pro extension to version 1.10 or higher', 'belingogeo').'</p>';
+		}
 	}else{
 		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
 	}
@@ -52,7 +56,11 @@ function belingogeo_import_func($arr) {
 	echo '</p>';
 	echo '<p style="color:red;">'.__('Attention! Loading all cities at once can be difficult and depends on the settings and limitations of your hosting provider. In this case, we recommend splitting the file into several parts.', 'belingogeo').'</p>';
 	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
-		belingogeopro_import_func();
+		if(function_exists('belingogeopro_import_func')) {
+			belingogeopro_import_func();
+		}else{
+			echo '<p style="color:red;">'.__('You need to update the Pro extension to version 1.9 or higher', 'belingogeo').'</p>';
+		}
 	}else{
 		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
 	}
@@ -65,7 +73,11 @@ function belingogeo_export_func($arr) {
 	echo '<div class="wrap">';
 	echo '<h1 class="wp-heading-inline">'.__('Export', 'belingogeo').'</h1>';
 	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
-		belingogeopro_export_func();
+		if(function_exists('belingogeopro_export_func')) {
+			belingogeopro_export_func();
+		}else{
+			echo '<p style="color:red;">'.__('You need to update the Pro extension to version 1.9 or higher', 'belingogeo').'</p>';
+		}
 	}else{
 		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
 	}
