@@ -484,7 +484,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 				$is_exclude = true;
 			}
 			if($belingo_geo_exclude_all_posts) {
-				if($term->taxonomy == 'category' || $term->taxonomy = 'post_tag') {
+				if($term->taxonomy == 'category' || $term->taxonomy == 'post_tag') {
 					$is_exclude = true;
 				}
 			}
