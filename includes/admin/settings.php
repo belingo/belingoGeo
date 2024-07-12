@@ -13,7 +13,6 @@ function belingoGeo_rewrite_rules_settings() {
 	add_submenu_page( 'belingo_geo_settings.php', __('Woo Price', 'belingogeo'), __('Woo Price', 'belingogeo'), 'edit_others_posts', 'belingogeo_woo_price', 'belingogeo_woo_price_func');
 	add_submenu_page( 'belingo_geo_settings.php', __('Import', 'belingogeo'), __('Import', 'belingogeo'), 'edit_others_posts', 'belingogeo_import', 'belingogeo_import_func');
 	add_submenu_page( 'belingo_geo_settings.php', __('Export', 'belingogeo'), __('Export', 'belingogeo'), 'edit_others_posts', 'belingogeo_export', 'belingogeo_export_func');
-	add_submenu_page( 'belingo_geo_settings.php', __('Subscription Pro', 'belingogeo'), __('Subscription Pro', 'belingogeo'), 'edit_others_posts', 'belingogeo_subscription', 'belingogeo_subscription_pro_func');
 	add_submenu_page( 'belingo_geo_settings.php', __('About plugin', 'belingogeo'), __('About plugin', 'belingogeo'), 'edit_others_posts', 'belingo_geo_about.php', 'belingo_geo_about_function');
 }
 
@@ -26,119 +25,6 @@ function belingogeo_download_example() {
 		exit;
 	}
 
-	if(isset($_GET['page']) && $_GET['page'] == 'belingogeo_subscription' && isset($_GET['change_user'])) {
-		delete_option('belingo_account_login');
-		delete_option('belingo_account_password');	
-		wp_redirect('admin.php?page=belingogeo_subscription');
-		exit;
-	}
-
-}
-
-function belingogeo_subscription_pro_func($arr) {
-
-	if(isset($_POST['login']) && isset($_POST['password'])) {
-		$login = sanitize_text_field($_POST['login']);
-		$password = sanitize_text_field($_POST['password']);
-
-		update_option('belingo_account_login', $login);
-		update_option('belingo_account_password', $password);
-	}
-
-	$belingo_login = get_option('belingo_account_login');
-	$belingo_password = get_option('belingo_account_password');
-
-	if($belingo_login && $belingo_password) {
-		$getlicenses = belingo_account_get_belingogeopro_lic($belingo_login, $belingo_password);
-	}
-
-	echo '<div class="wrap">';
-	echo '<h1 class="wp-heading-inline">'.__('Subscription Pro', 'belingogeo').'</h1>';
-	if(isset($getlicenses) && !isset($getlicenses->error)) {
-		$belingogeopro = @get_plugin_data( WP_PLUGIN_DIR . "/belingogeopro/belingoGeoPro.php", false, false );
-		//echo '<pre>';print_r($getlicenses);echo '</pre>';
-		echo '<a href="admin.php?page=belingogeo_subscription&change_user=1" class="page-title-action">'.__('Change user', 'belingogeo').'</a>';
-		echo '<hr class="wp-header-end">';
-		echo '<br>';
-		echo '<table class="wp-list-table widefat striped">';
-				echo '<thead>';
-					echo '<tr>';
-					echo '<td>'.__('Name', 'belingogeo').'</td>';	
-					echo '<td>'.__('Domain', 'belingogeo').'</td>';
-					echo '<td>'.__('Current version', 'belingogeo').'</td>';
-					echo '<td>'.__('Last version', 'belingogeo').'</td>';
-					echo '<td>'.__('Expires', 'belingogeo').'</td>';
-					echo '<td>'.__('Status', 'belingogeo').'</td>';
-					echo '<td>'.__('Actions', 'belingogeo').'</td>';
-					echo '</tr>';
-					echo '</thead>';
-					echo '<tbody>';
-					foreach($getlicenses->success as $license) {
-						echo '<tr>';
-						echo '<td>'.$license->meta->belingo_product[0].'</td>';
-						echo '<td>'.$license->meta->belingo_domain[0].'</td>';
-						echo '<td>';
-						if(isset($belingogeopro['Version']) && !empty($belingogeopro['Version'])) {
-							echo $belingogeopro['Version'];
-						}else{
-							echo __('Not found', 'belingogeo');
-						}
-						echo '</td>';
-						echo '<td>'.$license->last_version.'</td>';
-						echo '<td>'.date('d.m.Y', strtotime($license->meta->active_to[0])).'</td>';
-						echo '<td>'.$license->meta->belingo_status[0].'</td>';
-						echo '<td>';
-						if($license->meta->belingo_status[0] == 'Активна') {
-							if(isset($belingogeopro['Version']) && !empty($belingogeopro['Version'])) {
-								if($belingogeopro['Version'] != $license->last_version) {
-									echo '<a class="button" href="#">'.__('Update', 'belingogeo').'</a>';
-								}
-							}else{
-								echo '<a class="button" href="#">'.__('Install', 'belingogeo').'</a>';
-							}
-						}else{
-							echo '<a class="button" href="https://belingo.ru/account/licenses/buy/4361/?license_id='.$license->ID.'">'.__('Pay', 'belingogeo').'</a>';
-						}
-						echo '</td>';
-						echo '</tr>';
-					}
-				echo '</tbody>';
-			echo '</table>';
-	}else{
-		if(isset($getlicenses->error)) {
-			echo '<div class="notice notice-error">'.$getlicenses->error.'</div>';
-		}
-		echo '<div class="belingo_auth_form">';
-		echo '<p>'.__('Authorization in your personal account belingo.ru').'</p>';
-		echo '<form action="" method="post">';
-		echo '<input type="text" name="login" placeholder="Ваш логин">';
-		echo '<input type="password" name="password" placeholder="Ваш пароль">';
-		echo '<input type="submit" value="Войти" class="button button-primary">';
-		echo '</form>';
-		echo '</div>';
-	}
-	echo '</div>';
-}
-
-function belingo_account_get_belingogeopro_lic($login, $password) {
-
-	$credentials = array(
-		'login'    => $login,
-		'password' => $password,
-		'product'  => 'BelingoGeo Pro'
-	);		
-	 
-	$ch = curl_init('https://belingo.ru/api/v1/getlicenses');
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($credentials, '', '&'));
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_HEADER, false);
-	$result = curl_exec($ch);
-	curl_close($ch);	
-	 
-	return json_decode($result);
-
 }
 
 function belingogeo_woo_price_func($arr) {
@@ -147,7 +33,11 @@ function belingogeo_woo_price_func($arr) {
 	echo '<h1 class="wp-heading-inline">'.__('Woo Price', 'belingogeo').'</h1>';
 	echo '<p>'.__('In this section, you can manage prices in WooCommerce for each city separately.').'</p>';
 	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
-		belingogeopro_woo_price_func();
+		if(function_exists('belingogeopro_woo_price_func')) {
+			belingogeopro_woo_price_func();
+		}else{
+			echo '<p style="color:red;">'.__('You need to update the Pro extension to version 1.10 or higher', 'belingogeo').'</p>';
+		}
 	}else{
 		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
 	}
@@ -166,7 +56,11 @@ function belingogeo_import_func($arr) {
 	echo '</p>';
 	echo '<p style="color:red;">'.__('Attention! Loading all cities at once can be difficult and depends on the settings and limitations of your hosting provider. In this case, we recommend splitting the file into several parts.', 'belingogeo').'</p>';
 	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
-		belingogeopro_import_func();
+		if(function_exists('belingogeopro_import_func')) {
+			belingogeopro_import_func();
+		}else{
+			echo '<p style="color:red;">'.__('You need to update the Pro extension to version 1.9 or higher', 'belingogeo').'</p>';
+		}
 	}else{
 		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
 	}
@@ -179,7 +73,11 @@ function belingogeo_export_func($arr) {
 	echo '<div class="wrap">';
 	echo '<h1 class="wp-heading-inline">'.__('Export', 'belingogeo').'</h1>';
 	if (is_plugin_active('belingogeopro/belingoGeoPro.php')) {
-		belingogeopro_export_func();
+		if(function_exists('belingogeopro_export_func')) {
+			belingogeopro_export_func();
+		}else{
+			echo '<p style="color:red;">'.__('You need to update the Pro extension to version 1.9 or higher', 'belingogeo').'</p>';
+		}
 	}else{
 		echo '<p style="color:red;">'.__('Only available for Pro version', 'belingogeo').'</p>';
 	}

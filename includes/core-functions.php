@@ -267,8 +267,7 @@ function belingoGeo_getUserIP() {
         $ip = $remote;
     }
 
-    //return $ip;
-    return '185.9.187.201';
+    return $ip;
 
 }
 
@@ -370,6 +369,10 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 		$city = belingoGeo_get_current_city();
 	}else{
 		$city = belingogeo_get_city_by('slug', $current_city);
+	}
+
+	if(!$city) {
+		return true;
 	}
 	
 	if($city && $city->get_slug() == 'default-city') {
@@ -481,7 +484,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 				$is_exclude = true;
 			}
 			if($belingo_geo_exclude_all_posts) {
-				if($term->taxonomy == 'category' || $term->taxonomy = 'post_tag') {
+				if($term->taxonomy == 'category' || $term->taxonomy == 'post_tag') {
 					$is_exclude = true;
 				}
 			}
