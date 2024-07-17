@@ -115,11 +115,11 @@ function belingo_geo_function($arr) {
 
 	flush_rewrite_rules();
 
-	$belingogeo_version = BELINGO_GEO_VERSION;
+	$belingogeo_version = '';
 	$belingogeo_version = apply_filters('belingogeo_settings_version', $belingogeo_version);
 
 	echo '<div class="wrap">';
-	echo '<h1 class="wp-heading-inline">'.__('Belingo Geo Settings', 'belingogeo').' <sup style="color:green;">v'.$belingogeo_version.'</sup></h1>';
+	echo '<h1 class="wp-heading-inline">'.__('Belingo Geo Settings', 'belingogeo').' <sup style="color:green;">'.$belingogeo_version.'</sup></h1>';
 	if (!is_plugin_active('belingogeopro/belingoGeoPro.php')) {
 		echo '<a target="_blank" href="https://belingo.ru/products/belingogeo-pro/?utm_source=plugin_belingogeo&utm_medium=pro" class="page-title-action">'.__('Go Pro', 'belingogeo').'</a>';
 	}
