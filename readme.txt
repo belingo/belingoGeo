@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 4.4.2
 Tested up to: 6.5.2
-Stable tag: 1.10.1
+Stable tag: 1.10.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,12 @@ Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram chan
 4. City page
 
 == Changelog ==
+= 1.10.2 =
+* Fixed incorrect condition in exceptions
+* Fixed fatal errors when using new versions of the plugin with old pro extensions
+* Fixed exception if the current city is not in the list. Fixed sitemap when all regular entries are excluded.
+* Fixed a fatal error in the sitemap when there are no excluded taxonomies.
+
 = 1.10.1 =
 * Fixed WC cache when changing prices for goods and when changing cities
 
