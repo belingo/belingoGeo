@@ -5,6 +5,8 @@ add_filter('wpseo_metakeywords', 'belingo_city_meta', 99);
 add_filter('wpseo_title', 'belingo_city_meta', 99);
 add_filter('wpseo_opengraph_desc', 'belingo_city_meta', 99);
 add_filter('wpseo_opengraph_title', 'belingo_city_meta', 99);
+add_filter('wpseo_twitter_description', 'belingo_city_meta', 99);
+add_filter('wpseo_twitter_title', 'belingo_city_meta', 99);
 
 function belingo_city_meta($s) {
 
