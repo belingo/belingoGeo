@@ -2,8 +2,8 @@
 Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 4.4.2
-Tested up to: 6.5.2
-Stable tag: 1.10.4
+Tested up to: 6.6.2
+Stable tag: 1.10.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.10.5 =
+* Added support for fields in Yoast for social network X
+* Updated plugin description
+
 = 1.10.4 =
 * fix example csv file with cities
 
