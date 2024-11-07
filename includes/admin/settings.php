@@ -99,10 +99,28 @@ function belingo_geo_about_function($arr) {
 	echo '<div><a target="_blank" href="https://belingo.ru/kak-sozdat-dopolnitelnoe-pole-dlya-goroda-v-plagine-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('How to create an additional field for the city in the belingoGeo plugin?', 'belingogeo').'</a></div>';
 	echo '<div><a target="_blank" href="https://belingo.ru/kak-vyvesti-ssylku-dlya-pereklyucheniya-goroda-v-lyubom-meste-sajta/?utm_source=plugin_belingogeo&utm_medium=description">'.__('How to display a link to switch cities anywhere on the site', 'belingogeo').'</a></div>';
 	echo '<div><a target="_blank" href="https://belingo.ru/opisanie-vsex-nastroek-plagina-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('Description of all settings of the BelingoGeo plugin', 'belingogeo').'</a></div>';
+	echo '<div><a target="_blank" href="https://belingo.ru/nastrojka-plagina-belingogeo-v-rezhime-poddomenov/?utm_source=plugin_belingogeo&utm_medium=description">'.__('Setting up the BelingoGeo plugin in the "city in a subdomain" mode', 'belingogeo').'</a></div>';
+	echo '<div><a target="_blank" href="https://belingo.ru/opisanie-shortkodov-plagina-belingogeo/?utm_source=plugin_belingogeo&utm_medium=description">'.__('Description of shortcodes of the BelingoGeo plugin', 'belingogeo').'</a></div>';
+
 	echo '<h2>'.__('Support', 'belingogeo').'</h2>';
 	echo '<div><a target="_blank" href="https://belingo.ru">https://belingo.ru</a> '.__('- Our website.', 'belingogeo').'</div>';
 	echo '<div><a target="_blank" href="mailto: support@belingo.ru">support@belingo.ru</a> '.__('- E-mail for communication with technical support specialists.', 'belingogeo').'</div>';
-	echo '<div><a target="_blank" href="https://t.me/belingollc">https://t.me/belingollc</a> '.__('- Our telegram channel, where you can find out the latest news and participate in the development of our products.', 'belingogeo').'</div>';
+
+	echo '<h2>'.__('We are on social networks', 'belingogeo').'</h2>';
+	echo '<div class="social_networks">
+					<a href="https://t.me/belingollc" target="_blank" rel="nofollow">
+						<svg width="35px" height="35px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M128,0 C57.307,0 0,57.307 0,128 L0,128 C0,198.693 57.307,256 128,256 L128,256 C198.693,256 256,198.693 256,128 L256,128 C256,57.307 198.693,0 128,0 L128,0 Z" fill="#40B3E0"> </path> <path d="M190.2826,73.6308 L167.4206,188.8978 C167.4206,188.8978 164.2236,196.8918 155.4306,193.0548 L102.6726,152.6068 L83.4886,143.3348 L51.1946,132.4628 C51.1946,132.4628 46.2386,130.7048 45.7586,126.8678 C45.2796,123.0308 51.3546,120.9528 51.3546,120.9528 L179.7306,70.5928 C179.7306,70.5928 190.2826,65.9568 190.2826,73.6308" fill="#FFFFFF"> </path> <path d="M98.6178,187.6035 C98.6178,187.6035 97.0778,187.4595 95.1588,181.3835 C93.2408,175.3085 83.4888,143.3345 83.4888,143.3345 L161.0258,94.0945 C161.0258,94.0945 165.5028,91.3765 165.3428,94.0945 C165.3428,94.0945 166.1418,94.5735 163.7438,96.8115 C161.3458,99.0505 102.8328,151.6475 102.8328,151.6475" fill="#D2E5F1"> </path> <path d="M122.9015,168.1154 L102.0335,187.1414 C102.0335,187.1414 100.4025,188.3794 98.6175,187.6034 L102.6135,152.2624" fill="#B5CFE4"> </path> </g> </g></svg>
+					</a>
+					<a href="https://vk.com/itbelingo" target="_blank" rel="nofollow">
+						<svg width="35px" height="35px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="512" cy="512" r="512" style="fill:#2787f5"></circle> <path d="M585.83 271.5H438.17c-134.76 0-166.67 31.91-166.67 166.67v147.66c0 134.76 31.91 166.67 166.67 166.67h147.66c134.76 0 166.67-31.91 166.67-166.67V438.17c0-134.76-32.25-166.67-166.67-166.67zm74 343.18h-35c-13.24 0-17.31-10.52-41.07-34.62-20.71-20-29.87-22.74-35-22.74-7.13 0-9.17 2-9.17 11.88v31.57c0 8.49-2.72 13.58-25.12 13.58-37 0-78.07-22.4-106.93-64.16-43.45-61.1-55.33-106.93-55.33-116.43 0-5.09 2-9.84 11.88-9.84h35c8.83 0 12.22 4.07 15.61 13.58 17.31 49.9 46.17 93.69 58 93.69 4.41 0 6.45-2 6.45-13.24v-51.6c-1.36-23.76-13.92-25.8-13.92-34.28 0-4.07 3.39-8.15 8.83-8.15h55c7.47 0 10.18 4.07 10.18 12.9v69.58c0 7.47 3.39 10.18 5.43 10.18 4.41 0 8.15-2.72 16.29-10.86 25.12-28.17 43.11-71.62 43.11-71.62 2.38-5.09 6.45-9.84 15.28-9.84h35c10.52 0 12.9 5.43 10.52 12.9-4.41 20.37-47.18 80.79-47.18 80.79-3.73 6.11-5.09 8.83 0 15.61 3.73 5.09 16 15.61 24.1 25.12 14.94 17 26.48 31.23 29.53 41.07 3.45 9.84-1.65 14.93-11.49 14.93z" style="fill:#fff"></path> </g></svg>
+					</a>
+					<a href="https://dzen.ru/belingo" target="_blank" rel="nofollow">
+						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0 0 50 50">
+						<path d="M46.894 23.986c.004 0 .007 0 .011 0 .279 0 .545-.117.734-.322.192-.208.287-.487.262-.769C46.897 11.852 38.154 3.106 27.11 2.1c-.28-.022-.562.069-.77.262-.208.192-.324.463-.321.746C26.193 17.784 28.129 23.781 46.894 23.986zM46.894 26.014c-18.765.205-20.7 6.202-20.874 20.878-.003.283.113.554.321.746.186.171.429.266.679.266.03 0 .061-.001.091-.004 11.044-1.006 19.787-9.751 20.79-20.795.025-.282-.069-.561-.262-.769C47.446 26.128 47.177 26.025 46.894 26.014zM22.823 2.105C11.814 3.14 3.099 11.884 2.1 22.897c-.025.282.069.561.262.769.189.205.456.321.734.321.004 0 .008 0 .012 0 18.703-.215 20.634-6.209 20.81-20.875.003-.283-.114-.555-.322-.747C23.386 2.173 23.105 2.079 22.823 2.105zM3.107 26.013c-.311-.035-.555.113-.746.321-.192.208-.287.487-.262.769.999 11.013 9.715 19.757 20.724 20.792.031.003.063.004.094.004.25 0 .492-.094.678-.265.208-.192.325-.464.322-.747C23.741 32.222 21.811 26.228 3.107 26.013z"></path>
+						</svg>
+					</a>
+				</div>';
+
 	echo '</div>';
 	echo '<h2>'.__('Our other plugins', 'belingogeo').'</h2>';
 	echo '<div><a href="https://belingo.ru/products/belingoantispam/?utm_source=plugin_belingogeo&utm_medium=description" target="_blank">Belingo Antispam</a> - '.__('A simple and effective anti-spam plugin for WordPress. The plugin\'s algorithm analyzes user behavior on the site and, if necessary, marks it as spam.', 'belingogeo').'</div>';
@@ -192,7 +210,8 @@ function belingo_geo_settings() {
 				[
 					"label" => __('City in subdomain (the link will look like this: samara.example.com)', 'belingogeo'),
 					"value" => "subdomain",
-					"disabled" => true
+					"disabled" => true,
+					"help" => "https://belingo.ru/nastrojka-plagina-belingogeo-v-rezhime-poddomenov/?utm_source=plugin_belingogeo&utm_medium=settings"
 				]
 			],
 			'post_type'	=> false,
@@ -666,7 +685,7 @@ function belingo_geo_display_settings($args) {
 
 			case 'radio':
 				foreach($options as $option) {
-					echo "<p><label for='".esc_attr($option_name)."-".esc_attr($option['value'])."'><input ";
+					echo "<p class='radio_label'><label for='".esc_attr($option_name)."-".esc_attr($option['value'])."'><input ";
 					if($disabled || $option['disabled']) {
 						echo "disabled='disabled'";
 					}
@@ -675,7 +694,13 @@ function belingo_geo_display_settings($args) {
 					if($checked && $checked == $option['value']) {
 						echo "checked";
 					}
-					echo "> ".esc_html($option['label'])."</label></p>";
+					echo "> ".esc_html($option['label'])."</label>";
+					if(isset($option['help'])) {
+						echo "<a class='settings_question' target='_blank' href='".esc_attr($option['help'])."'>";
+						echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve"><circle fill="#6E83B7" cx="256" cy="256" r="246"/><circle fill="#466089" cx="256" cy="256" r="200"/><g><path fill="#EDEFF1" d="M276.02 351h-40v-89.36c0-23.401 19.097-42.439 42.571-42.439 20.087 0 36.429-16.194 36.429-36.101 0-19.905-16.342-36.1-36.429-36.1h-45.143c-20.087 0-36.429 16.194-36.429 36.1h-40c0-41.962 34.286-76.1 76.429-76.1h45.143c42.143 0 76.429 34.138 76.429 76.1s-34.286 76.1-76.429 76.1c-1.418 0-2.571 1.095-2.571 2.439V351z"/><circle fill="#EDEFF1" cx="256" cy="395" r="26"/></g></svg>';
+						echo "</a>";
+					}
+					echo "</p>";
 				}
 				echo "<p class='description'>".esc_html($descr);
 				if(isset($is_pro) && $is_pro) {

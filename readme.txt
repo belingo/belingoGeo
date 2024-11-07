@@ -13,26 +13,57 @@ The plugin adds the ability to select cities, unique pages are created with a un
 
 The plugin adds the ability to select cities, unique pages are created with a unique url for each city. This allows you to uniqueize content for search engines.
 
+Plugin capabilities:
+
+- Creating virtual URLs for all WordPress pages and posts
+- Ability to combine cities into regions.
+- Ability to exclude pages, posts or taxonomies for which there is no need to create a URL
+- Pre-made pop-up windows for confirming the found city, as well as for selecting other cities.
+- Defining those cities that are not added to the list
+- Shortcodes for displaying cities in different cases
+- Shortcodes with a phone number and address for each city
+- Shortcodes that allow you to add any content, depending on the selected city
+- Shortcodes for regions, allowing you to display different content for a group of cities.
+- Creating virtual URLs for Woocommerce categories and products
+- Support for Yoast.
+
+<a href="https://belingo.ru/products/belingogeo-pro/?utm_source=wordpress.org&utm_medium=description" target="_blank">Extended version of the plugin</a>
+
+Useful articles:
+
 <a href="https://belingo.ru/ustanovka-i-nastrojka-plagina-belingogeo/?utm_source=wordpress.org&utm_medium=description" target="_blank">Installing and configuring the plugin</a>
 <a href="https://belingo.ru/kak-sortirovat-goroda-v-plagine-belingogeo/?utm_source=wordpress.org&utm_medium=description" target="_blank">How to sort cities in plugin</a>
 <a href="https://belingo.ru/kak-sozdat-dopolnitelnoe-pole-dlya-goroda-v-plagine-belingogeo/?utm_source=wordpress.org&utm_medium=description" target="_blank">How to create an additional field for the city in the plugin</a>
-<a href="https://belingo.ru/products/belingogeo-pro/?utm_source=wordpress.org&utm_medium=description" target="_blank">Extended version of the plugin</a>
+<a href="https://belingo.ru/opisanie-vsex-nastroek-plagina-belingogeo/?utm_source=wordpress.org&utm_medium=description">Description of all settings of the BelingoGeo plugin</a>
+<a href="https://belingo.ru/nastrojka-plagina-belingogeo-v-rezhime-poddomenov/?utm_source=wordpress.org&utm_medium=description">Setting up the BelingoGeo plugin in the "city in a subdomain" mode</a>
+<a href="https://belingo.ru/opisanie-shortkodov-plagina-belingogeo/?utm_source=wordpress.org&utm_medium=description">Description of shortcodes of the BelingoGeo plugin</a>
 
-Subscribe to our <a href="https://t.me/belingollc" target="_blank">Telegram channel</a>
+We are on social networks:
+
+<a href="https://t.me/belingollc" target="_blank">Telegram channel</a>
+<a href="https://vk.com/itbelingo" target="_blank">VK Group</a>
+<a href="https://dzen.ru/belingo" target="_blank">Zen channel</a>
 
 == Installation ==
 
 1. Upload `belingogeo` to the `/wp-content/plugins/` directory.
 2. Activate `Belingo.GeoCity` in your wordpress site if it is not activated already.
-3. Place shortcode [belingogeo_selector] anywhere on your website page.
+3. Place the shortcode [belingogeo_selector] anywhere on your website page. This shortcode displays the city switching selector, its placement is optional, URLs can be generated without it.
+4. Create one or more cities in BelingoGeo -> Cities, after that duplicates of each page with the city prefix will appear on your site, for example /city1/page/, /city2/page/, etc.
+5. To make pages unique, you need to use shortcodes. You can read more about shortcodes <a href="https://belingo.ru/opisanie-shortkodov-plagina-belingogeo/?utm_source=wordpress.org&utm_medium=install">here</a>
+6. Additionally, see the <a href="https://belingo.ru/opisanie-vsex-nastroek-plagina-belingogeo/?utm_source=wordpress.org&utm_medium=install">description of the plugin settings</a>
 
 == Screenshots ==
 1. Settings Page
 2. Example of work on the page
 3. Cities in console
 4. City page
+5. Regions in console
 
 == Changelog ==
+= 1.10.4 =
+* fix example csv file with cities
+
 = 1.10.3 =
 * Hide plugin version in settings
 

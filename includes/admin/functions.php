@@ -504,6 +504,7 @@ function belingogeo_bg_regions_save_term_fields( $term_id ) {
 add_action( 'admin_enqueue_scripts', 'belingoGeo_scripts_admin' );
 function belingoGeo_scripts_admin() {
 	wp_enqueue_style( 'belingo-geo-select2', BELINGO_GEO_PLUGIN_URL . '/css/select2.min.css' );
+	wp_enqueue_style( 'belingo-geo-styles', BELINGO_GEO_PLUGIN_URL . '/css/belingoGeoAdmin.css' );
 	wp_enqueue_script( 'belingo-geo-select2', BELINGO_GEO_PLUGIN_URL . '/js/select2.min.js', array( 'jquery' ) );
 	wp_enqueue_script( 'belingo-geo-scripts-admin', BELINGO_GEO_PLUGIN_URL . '/js/belingoGeoAdmin.js', array( 'jquery' ), '', false );
 }
