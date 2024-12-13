@@ -238,4 +238,27 @@ function belingogeo_mark_in_city_list_default( $post_states, $post ) {
 
 }
 
+add_action( 'init', 'belingogeo_init' );
+function belingogeo_init() {
+
+	$belingo_geo_url_type = get_option('belingo_geo_url_type');
+	$belingo_geo_basic_disable_url = get_option('belingo_geo_basic_disable_url');
+
+	// если плагин уже установлен и виртуальные урлы выключены
+	if($belingo_geo_url_type == 'subdirectory' && $belingo_geo_basic_disable_url) {
+		update_option('belingo_geo_url_type', 'disabled');
+	}
+
+	if($belingo_geo_url_type == 'disabled' || $belingo_geo_url_type == 'multisite') {
+		if(!$belingo_geo_basic_disable_url) {
+			update_option('belingo_geo_basic_disable_url', true);
+		}
+	}else{
+		if($belingo_geo_basic_disable_url) {
+			update_option('belingo_geo_basic_disable_url', false);
+		}
+	}
+
+}
+
 ?>

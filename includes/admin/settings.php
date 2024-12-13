@@ -168,7 +168,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_tags' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_taxonomies' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_default_nonecity' );
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_disable_url' );
+	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_disable_url' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_redirect_page' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_finding_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page');
@@ -203,6 +203,11 @@ function belingo_geo_settings() {
 			'descr' 	=> '',
 			'options' => [
 				[
+					"label" => __('URLs disabled (the plugin will not generate virtual links)', 'belingogeo'),
+					"value" => "disabled",
+					"disabled" => false
+				],
+				[
 					"label" => __('City in subdirectory (the link will look like this: example.com/samara/)', 'belingogeo'),
 					"value" => "subdirectory",
 					"disabled" => false
@@ -212,7 +217,12 @@ function belingo_geo_settings() {
 					"value" => "subdomain",
 					"disabled" => true,
 					"help" => "https://belingo.ru/nastrojka-plagina-belingogeo-v-rezhime-poddomenov/?utm_source=plugin_belingogeo&utm_medium=settings"
-				]
+				],
+				[
+					"label" => __('Multisite (switching between sites, within your network of sites, WordPress must be in multisite mode)', 'belingogeo'),
+					"value" => "multisite",
+					"disabled" => true
+				],
 			],
 			'post_type'	=> false,
 			'disabled' => false,
@@ -437,7 +447,7 @@ function belingo_geo_settings() {
 		)
 	);
 
-	add_settings_field( 
+	/*add_settings_field( 
 		'belingo_geo_basic_disable_url', 
 		__('Disable virtual URLs', 'belingogeo'),
 		'belingo_geo_display_settings', 
@@ -449,7 +459,7 @@ function belingo_geo_settings() {
 			'descr' 	=> __('You can disable virtual URLs, the plugin will not generate them', 'belingogeo'),
 			'post_type'	=> false
 		)
-	);
+	);*/
 
 	add_settings_field( 
 		'belingo_geo_basic_redirect_page', 
