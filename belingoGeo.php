@@ -47,12 +47,29 @@ function belingoGeo_install() {
 	belingogeo_create_default_city();
 
 	// default values
-	update_option('belingo_geo_exclude_nonobject', 1);
-	update_option('belingo_geo_url_type', 'subdirectory');
-	update_option('belingo_geo_sitemap_per_page', 1000);
-	update_option('belingo_geo_basic_popup_window_header', __('Your delivery region', 'belingogeo'));
-	update_option('belingo_geo_basic_popup_window_text1', __('Didn\'t find your city?', 'belingogeo'));
-	update_option('belingo_geo_basic_popup_window_text2', __('We deliver worldwide', 'belingogeo'));
+	if(!get_option('belingo_geo_exclude_nonobject')) {
+		update_option('belingo_geo_exclude_nonobject', 1);
+	}
+
+	if(!get_option('belingo_geo_url_type')) {
+		update_option('belingo_geo_url_type', 'subdirectory');
+	}
+
+	if(!get_option('belingo_geo_sitemap_per_page')) {
+		update_option('belingo_geo_sitemap_per_page', 1000);
+	}
+
+	if(!get_option('belingo_geo_basic_popup_window_header')) {
+		update_option('belingo_geo_basic_popup_window_header', __('Your delivery region', 'belingogeo'));
+	}
+
+	if(!get_option('belingo_geo_basic_popup_window_text1')) {
+		update_option('belingo_geo_basic_popup_window_text1', __('Didn\'t find your city?', 'belingogeo'));
+	}
+
+	if(!get_option('belingo_geo_basic_popup_window_text2')) {
+		update_option('belingo_geo_basic_popup_window_text2', __('We deliver worldwide', 'belingogeo'));
+	}
 
 	flush_rewrite_rules();
 
