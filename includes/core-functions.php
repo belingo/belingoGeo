@@ -152,7 +152,7 @@ function belingogeo_remove_nogeo_cookie() {
 
 function belingogeo_save_geo_cookie($city_name, $city_slug) {
 	setcookie('geo_city', $city_slug, time()+1209600, COOKIEPATH, COOKIE_DOMAIN, false);
-	$city = belingogeo_get_city_by('slug', $city_name);
+	$city = belingogeo_get_city_by('slug', $city_slug);
 	if(!$city) {
 		setcookie('nogeo_name', $city_name, time()+1209600, COOKIEPATH, COOKIE_DOMAIN, false);
 	}
