@@ -70,6 +70,7 @@ function belingoGeo_cities_fields() {
 	add_meta_box( "cities_padej2_field", __('Dative', 'belingogeo'), "belingoGeo_cities_padej2_field", "cities", "normal", "high" );
 	add_meta_box( "cities_padej3_field", __('Genitive', 'belingogeo'), "belingoGeo_cities_padej3_field", "cities", "normal", "high" );
 	add_meta_box( "cities_phone_field", __('Telephone', 'belingogeo'), "belingoGeo_cities_phone_field", "cities", "normal", "high" );
+	add_meta_box( "cities_phone_link_field", __('Telephone link', 'belingogeo'), "belingoGeo_cities_phone_link_field", "cities", "normal", "high" );
 	add_meta_box( "cities_address_field", __('Address', 'belingogeo'), "belingoGeo_cities_address_field", "cities", "normal", "high" );
 	add_meta_box( "cities_addon_contacts_field", __('Additional points', 'belingogeo'), "belingoGeo_cities_addon_contacts_field", "cities", "normal", "low" );
 }
@@ -137,6 +138,20 @@ function belingoGeo_cities_phone_field() {
 	}
 	echo '<input type="text" style="width:100%;" name="city_phone" value="' . htmlentities( $city_phone ) . '"><br>
 	<sub>+7 (XXX) XXX-XX-XX</sub>';
+
+}
+
+function belingoGeo_cities_phone_link_field() {
+	global $post;
+
+	$custom     = get_post_custom( $post->ID );
+	if(isset($custom["city_phone_link"][0])) {
+		$city_phone_link = $custom["city_phone_link"][0];
+	}else{
+		$city_phone_link = '';
+	}
+	echo '<input type="text" style="width:100%;" name="city_phone_link" value="' . htmlentities( $city_phone_link ) . '"><br>
+	<sub>'.htmlentities('<a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a>').'</sub>';
 
 }
 
@@ -269,6 +284,9 @@ function belingoGeo_save_city( $post_id ) {
 		}
 		if(isset($_POST["city_phone"])) {
 			update_post_meta( $post_id, "city_phone", html_entity_decode( sanitize_text_field($_POST["city_phone"]) ) );
+		}
+		if(isset($_POST["city_phone_link"])) {
+			update_post_meta( $post_id, "city_phone_link", $_POST["city_phone_link"] );
 		}
 		if(isset($_POST["city_address"])) {
 			update_post_meta( $post_id, "city_address", html_entity_decode( sanitize_text_field($_POST["city_address"]) ) );
