@@ -73,4 +73,58 @@ function belingogeo_wpseo_schema_webpage( $data ) {
 
 }
 
+add_filter( 'wpseo_breadcrumb_links', 'belingogeo_rewrite_yoast_breadcrumbs' );
+function belingogeo_rewrite_yoast_breadcrumbs( $crumbs ) {
+
+	$allow = apply_filters( 'belingogeo_rewrite_yoast_breadcrumbs', true );
+
+	if( !$allow ) {
+		return $crumbs;
+	}
+
+	if( is_admin() ) {
+		return $crumbs;
+	}
+
+	$disable_urls = get_option( 'belingo_geo_basic_disable_url' );
+	if( $disable_urls ) {
+		return $crumbs;
+	}
+
+	$city = belingoGeo_get_current_city();
+
+	if( !$city ) {
+		return $crumbs;
+	}
+
+	if( is_array( $crumbs ) ) {
+		foreach ( $crumbs as $key => $crumb ) {
+			if( isset( $crumb['id'] ) ) {
+				if( !belingogeo_is_exclude( $crumb['id'], get_post( $crumb['id'] ), $city->get_slug() ) ) {
+					$crumbs[$key]['url'] = belingoGeo_append_city_url( $crumb['url'], $city->get_slug() );
+				}
+			}else{
+				if( !belingogeo_is_exclude( false, false, $city->get_slug() ) ) {
+					$crumbs[$key]['url'] = belingoGeo_append_city_url( $crumb['url'], $city->get_slug() );
+				}
+			}
+		}
+	}
+
+	if( get_option( 'belingo_geo_basic_show_in_breadcrumbs' ) ) {
+		foreach ( $crumbs as $key => $crumb ) {
+			if( $key == 1 ) {
+				$city_crumbs[] = [
+					'text' => $city->get_name(),
+					'url' => apply_filters( 'belingogeo_yoast_bredcrumbs_city_url', belingoGeo_append_city_url( home_url(), $city->get_slug() ) )
+				];
+			}
+			$city_crumbs[] = $crumb;
+		}
+		$crumbs = $city_crumbs;
+	}
+
+	return $crumbs;
+}
+
 ?>

@@ -365,7 +365,7 @@ function belingogeo_check_disallow_rule($key) {
 
 function belingogeo_is_exclude($object_id = '', $object = '', $current_city = '') {
 
-	if(empty($current_city)) {
+	if($current_city === '') {
 		$city = belingoGeo_get_current_city();
 	}else{
 		$city = belingogeo_get_city_by('slug', $current_city);
@@ -396,11 +396,11 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 		}
 	}
 
-	if(empty($object_id)) {
+	if($object_id === '') {
 		$object_id = get_queried_object_id();
 	}
 
-	if(empty($object)) {
+	if($object === '') {
 		$object = get_queried_object();
 	    if(is_object($object)) {
 	    	$object = get_class($object);
@@ -492,7 +492,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 
 	}
 
-	if(empty($object) || !$object) {
+	if(!$object) {
 		if($exclude_nonobject) {
 			$is_exclude = true;
 		}
