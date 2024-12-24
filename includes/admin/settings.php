@@ -169,7 +169,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_taxonomies' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_default_nonecity' );
 	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_disable_url' );
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_redirect_page' );
+	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_redirect_page' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_finding_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_nonobject');
@@ -222,6 +222,11 @@ function belingo_geo_settings() {
 				[
 					"label" => __('Multisite (switching between sites, within your network of sites, WordPress must be in multisite mode)', 'belingogeo'),
 					"value" => "multisite",
+					"disabled" => true
+				],
+				[
+					"label" => __('Existing URLs (redirect to existing page structure with city. For pages only.)', 'belingogeo'),
+					"value" => "existing",
 					"disabled" => true
 				],
 			],
@@ -476,7 +481,7 @@ function belingo_geo_settings() {
 		)
 	);*/
 
-	add_settings_field( 
+	/*add_settings_field( 
 		'belingo_geo_basic_redirect_page', 
 		__('Redirect on page if is exists', 'belingogeo'),
 		'belingo_geo_display_settings', 
@@ -490,7 +495,7 @@ function belingo_geo_settings() {
 			'disabled'  => true,
 			'is_pro'	=> true
 		)
-	);
+	);*/
 
 	add_settings_field( 
 		'belingo_geo_basic_finding_nonecity', 

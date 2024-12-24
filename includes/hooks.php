@@ -150,7 +150,7 @@ function belingogeo_generate_links($url, $object) {
 	}
 
 	$disable_urls = get_option('belingo_geo_basic_disable_url');
-	if($disable_urls) {
+	if( $disable_urls && get_option( 'belingo_geo_url_type' ) == 'subdirectory' ) {
 		return $url;
 	}
 
@@ -181,11 +181,13 @@ function belingogeo_generate_links($url, $object) {
 		$city_slug = $city->get_slug();
 	}
 
+	$original_url = $url;
+
 	if(!belingogeo_is_exclude($object_id, $object_name)) {
 		$url = belingoGeo_append_city_url($url, $city_slug);
 	}
 
-	return $url;
+	return apply_filters( 'belingogeo_generate_link', $url, $original_url, $city_slug, $object, $object_id );
 
 }
 add_filter( 'page_link', 'belingogeo_generate_links', 10, 2 );
@@ -244,7 +246,7 @@ function belingogeo_init() {
 	$belingo_geo_url_type = get_option('belingo_geo_url_type');
 	$belingo_geo_basic_disable_url = get_option('belingo_geo_basic_disable_url');
 
-	if($belingo_geo_url_type == 'disabled' || $belingo_geo_url_type == 'multisite') {
+	if( $belingo_geo_url_type == 'disabled' || $belingo_geo_url_type == 'multisite' || $belingo_geo_url_type == 'existing' ) {
 		if(!$belingo_geo_basic_disable_url) {
 			update_option('belingo_geo_basic_disable_url', true);
 		}
