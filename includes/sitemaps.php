@@ -134,14 +134,17 @@ function belingogeo_modify_yaost_sitemap() {
 				$page++;
 			}
 		}
-		$page = 1;
-		while($page_pages >= $page) {
-			$url = [
-				"loc" => get_site_url() . '/'.$city->get_slug().'_page.sitemap'.$page.'.xml',
-				"lastmod" => date('c',time())
-			];
-			$xml .= belingoGeo_get_xml_sitemap($url);
-			$page++;
+		$belingo_geo_exclude_all_pages = get_option('belingo_geo_exclude_all_pages');
+		if(!$belingo_geo_exclude_all_pages) {
+			$page = 1;
+			while($page_pages >= $page) {
+				$url = [
+					"loc" => get_site_url() . '/'.$city->get_slug().'_page.sitemap'.$page.'.xml',
+					"lastmod" => date('c',time())
+				];
+				$xml .= belingoGeo_get_xml_sitemap($url);
+				$page++;
+			}
 		}
 		foreach ( $post_types  as $post_type ) {
 			$page = 1;
@@ -225,6 +228,11 @@ function belingoGeo_get_sitemap_post_urls($city,$per_page,$page) {
 function belingoGeo_get_sitemap_page_urls($city,$per_page,$page) {
 
 	$urls = [];
+
+	$belingo_geo_exclude_all_pages = get_option('belingo_geo_exclude_all_pages');
+	if($belingo_geo_exclude_all_pages) {
+		return $urls;
+	}
 
 	// страницы
 	$arr_pages_exclude = [];

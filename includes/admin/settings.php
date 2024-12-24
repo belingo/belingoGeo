@@ -188,6 +188,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text2');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_windows_in_footer');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_posts');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_pages');
 	add_settings_section( 'belingo_geo_basic', __('Basic', 'belingogeo'), '', $settings_page );
 	add_settings_section( 'belingo_geo_excludes', __('Exceptions', 'belingogeo'), '', $settings_page );
 
@@ -353,6 +354,20 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_exclude_all_posts',
 			'descr' 	=> __('This option excludes all regular entries. If enabled, exclusion of each individual entry is ignored.', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_exclude_all_pages', 
+		__('Exclude all pages', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_excludes', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_exclude_all_pages',
+			'descr' 	=> __('This option excludes all pages. If enabled, exclusion of each individual page is ignored.', 'belingogeo'),
 			'post_type'	=> false
 		)
 	);

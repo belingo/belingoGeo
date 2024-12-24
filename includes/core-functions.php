@@ -417,6 +417,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 	$exclude_tags = get_option('belingo_geo_exclude_tags');
 	$exclude_post_types = get_option('belingo_geo_exclude_post_types');
 	$belingo_geo_exclude_all_posts = get_option('belingo_geo_exclude_all_posts');
+	$belingo_geo_exclude_all_pages = get_option('belingo_geo_exclude_all_pages');
 
 	$is_exclude = false;
 
@@ -462,6 +463,12 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 
 		if ( $post_obj->post_type == 'post' ) {
 			if($belingo_geo_exclude_all_posts) {
+				$is_exclude = true;
+			}
+		}
+
+		if ( $post_obj->post_type == 'page' ) {
+			if($belingo_geo_exclude_all_pages) {
 				$is_exclude = true;
 			}
 		}
