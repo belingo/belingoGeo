@@ -38,12 +38,12 @@ function belingogeo_ajax_data() {
     }
 
 	wp_localize_script( 'belingo-geo-scripts', 'belingoGeo',
-		array(
+		apply_filters( 'belingogeo_ajax_data', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'object_id' => get_queried_object_id(),
 			'object' => $object,
 			'backurl' => $back_url
-		)
+		))
 	);
 
 }
