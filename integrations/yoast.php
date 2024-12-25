@@ -97,16 +97,12 @@ function belingogeo_rewrite_yoast_breadcrumbs( $crumbs ) {
 		return $crumbs;
 	}
 
+	$is_exclude = belingogeo_is_exclude();
+
 	if( is_array( $crumbs ) ) {
 		foreach ( $crumbs as $key => $crumb ) {
-			if( isset( $crumb['id'] ) ) {
-				if( !belingogeo_is_exclude( $crumb['id'], get_post( $crumb['id'] ), $city->get_slug() ) ) {
-					$crumbs[$key]['url'] = belingoGeo_append_city_url( $crumb['url'], $city->get_slug() );
-				}
-			}else{
-				if( !belingogeo_is_exclude( false, false, $city->get_slug() ) ) {
-					$crumbs[$key]['url'] = belingoGeo_append_city_url( $crumb['url'], $city->get_slug() );
-				}
+			if( !$is_exclude ) {
+				$crumbs[$key]['url'] = belingoGeo_append_city_url( $crumb['url'], $city->get_slug() );
 			}
 		}
 	}
@@ -114,10 +110,12 @@ function belingogeo_rewrite_yoast_breadcrumbs( $crumbs ) {
 	if( get_option( 'belingo_geo_basic_show_in_breadcrumbs' ) ) {
 		foreach ( $crumbs as $key => $crumb ) {
 			if( $key == 1 ) {
-				$city_crumbs[] = [
-					'text' => $city->get_name(),
-					'url' => apply_filters( 'belingogeo_yoast_bredcrumbs_city_url', belingoGeo_append_city_url( home_url(), $city->get_slug() ) )
-				];
+				if( !$is_exclude ) {
+					$city_crumbs[] = [
+						'text' => $city->get_name(),
+						'url' => apply_filters( 'belingogeo_yoast_bredcrumbs_city_url', belingoGeo_append_city_url( home_url(), $city->get_slug() ) )
+					];
+				}
 			}
 			$city_crumbs[] = $crumb;
 		}
