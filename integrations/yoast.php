@@ -125,4 +125,15 @@ function belingogeo_rewrite_yoast_breadcrumbs( $crumbs ) {
 	return $crumbs;
 }
 
+add_filter( 'wpseo_sitemap_url', 'belingogeo_wpseo_sitemap_url', 10, 2 );
+function belingogeo_wpseo_sitemap_url( $output, $url ) {
+
+	if( empty( $url['loc'] ) ) {
+		$output = '';
+	}
+
+	return $output;
+
+}
+
 ?>
