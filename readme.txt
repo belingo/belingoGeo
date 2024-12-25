@@ -1,9 +1,9 @@
 === belingoGeo ===
 Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
-Requires at least: 4.4.2
-Tested up to: 6.6.2
-Stable tag: 1.10.5
+Requires at least: 5.0.0
+Tested up to: 6.7.1
+Stable tag: 1.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,23 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.11 =
+* Added multisite mode
+* The option to turn off URL generation has been moved to modes
+* Fixed the problem of resetting settings when disabling/enabling the plugin
+* Fixed saving of nogeo_name cookie
+* Fixed og:site_name when using Yoast
+* Added support for cities in Yoast breadcrumbs.
+* Fixed definition of empty object in belingogeo_is_exclude()
+* Added additional field for phone in city with html support
+* Added the ability to exclude all pages at once
+* The redirect option when the page exists has been moved to modes.
+* Added belingogeo_generate_link hook
+* Updated csv file with cities for import. Added prepositional case
+* Language packs updated
+* Fixed empty links in Yoast sitemap
+* Added belingogeo_ajax_data hook
+
 = 1.10.5 =
 * Added support for fields in Yoast for social network X
 * Updated plugin description
