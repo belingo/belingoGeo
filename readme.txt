@@ -13,6 +13,10 @@ The plugin adds the ability to select cities, unique pages are created with a un
 
 The plugin adds the ability to select cities, unique pages are created with a unique url for each city. This allows you to uniqueize content for search engines.
 
+<iframe width="680" height="420" src="https://www.youtube.com/embed/gTIPR8cmQmM?si=PZusLiKpV-GbgEGt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+If for some reason the video is unavailable, you can watch it on <a href="https://www.youtube.com/watch?v=gTIPR8cmQmM">Youtube</a>, <a href="https://dzen.ru/video/watch/6759510b565b5409ab52b754?share_to=link">Zen</a>, <a href="https://rutube.ru/video/0c08cc8493b2893a7c33b2ff5252a1db/">Rutube</a> and <a href="https://vkvideo.ru/video-54775454_456239017">VK Video</a>
+
 Plugin capabilities:
 
 - Creating virtual URLs for all WordPress pages and posts
