@@ -267,8 +267,7 @@ function belingoGeo_getUserIP() {
         $ip = $remote;
     }
 
-    //return $ip;
-    return '37.63.19.84';
+    return $ip;
 
 }
 
