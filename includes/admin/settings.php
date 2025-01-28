@@ -171,6 +171,7 @@ function belingo_geo_settings() {
 	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_disable_url' );
 	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_redirect_page' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_finding_nonecity' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_first_city_when_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_nonobject');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_in_breadcrumbs');
@@ -317,6 +318,20 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_basic_enable_windows_in_footer',
 			'descr' 	=> __('Enables pop-up windows in the footer of the site, the option can not be enabled if you placed the shortcode manually', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_show_first_city_when_nonecity', 
+		__( 'Show first city from list, when city not found', 'belingogeo' ),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_basic_show_first_city_when_nonecity',
+			'descr' 	=> __( 'If no default city is selected and the city could not be determined by IP, display any first city from the list. The option will be ignored if "Determine city outside the list" is enabled', 'belingogeo' ),
 			'post_type'	=> false
 		)
 	);

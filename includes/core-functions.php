@@ -267,7 +267,8 @@ function belingoGeo_getUserIP() {
         $ip = $remote;
     }
 
-    return $ip;
+    //return $ip;
+    return '37.63.19.84';
 
 }
 
@@ -307,9 +308,18 @@ function belingoGeo_check_city() {
 	if(!isset($city) || !$city) {
 		$city = belingogeo_get_default_city();
 		if(!$city) {
-			$city = new BelingoGeo_City();
-			$city->set_name(__('None city'));
-			$city->set_slug('');
+			if( get_option( 'belingo_geo_basic_show_first_city_when_nonecity' ) ) {
+				$first_city = belingoGeo_get_cities( 
+					[
+						'posts_per_page' => 1
+					]
+				);
+				$city = $first_city[0];
+			}else{
+				$city = new BelingoGeo_City();
+				$city->set_name( __('None city') );
+				$city->set_slug( '' );
+			}
 		}
 	}
 
