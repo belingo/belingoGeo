@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
 Tested up to: 6.7.1
-Stable tag: 1.11
+Stable tag: 1.11.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.11.1 =
+* Fixed city detection if the default city is not specified and the found city is not in the list. Now you can optionally display the first city from the list.
+
 = 1.11 =
 * Added multisite mode
 * The option to turn off URL generation has been moved to modes
