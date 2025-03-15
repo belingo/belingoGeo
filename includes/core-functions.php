@@ -514,7 +514,7 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 		}
 	}
 
-	return $is_exclude;
+	return apply_filters( 'belingogeo_is_exclude', $is_exclude, $object_id, $city );
 
 }
 

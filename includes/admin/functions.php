@@ -73,6 +73,27 @@ function belingoGeo_cities_fields() {
 	add_meta_box( "cities_phone_link_field", __('Telephone link', 'belingogeo'), "belingoGeo_cities_phone_link_field", "cities", "normal", "high" );
 	add_meta_box( "cities_address_field", __('Address', 'belingogeo'), "belingoGeo_cities_address_field", "cities", "normal", "high" );
 	add_meta_box( "cities_addon_contacts_field", __('Additional points', 'belingogeo'), "belingoGeo_cities_addon_contacts_field", "cities", "normal", "low" );
+
+	if( get_option('belingo_geo_url_type') == 'subdomain' || get_option('belingo_geo_url_type') == 'subdirectory' ) {
+		$args = array(
+			'public'   => true
+		);
+		$post_types = get_post_types( $args, 'names', 'and' );
+		add_meta_box( "exclude_cities_field", __('BelingoGeo - Exclude in cities', 'belingogeo'), "belingogeo_exclude_cities_field", array_diff( $post_types, array( 'cities' ) ), "normal", "high" );
+	}
+
+}
+
+function belingogeo_exclude_cities_field() {
+
+	if( !function_exists( 'belingogeopro_exclude_cities_field') ) {
+		echo " <span style=\"color:red;\">";
+		_e( 'Only available for Pro version', 'belingogeo' );
+		echo "</span>";
+	}else{
+		belingogeopro_exclude_cities_field();
+	}
+
 }
 
 function belingoGeo_cities_eng_field() {
@@ -379,7 +400,9 @@ function belingoGeo_get_cities_ajax_callback() {
 			$return[] = array( $search_results->post->ID, $title );
 		endwhile;
 	endif;
-	$return[] = array( 0, __('Disabled'));
+	if( !isset( $_GET['is_multiple'] ) ) {
+		$return[] = array( 0, __('Disabled'));
+	}
 	echo json_encode( $return );
 	die;
 }

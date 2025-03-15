@@ -174,6 +174,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_first_city_when_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_nonobject');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_posts_in_archives');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_in_breadcrumbs');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_url_type');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_confirmation_city');
@@ -347,6 +348,22 @@ function belingo_geo_settings() {
 			'option_name' => 'belingo_geo_sitemap_per_page',
 			'descr' 	=> __('The number of URLs per page in the sitemap', 'belingogeo'),
 			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_exclude_posts_in_archives', 
+		__('Exclude entries from archive pages', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_excludes', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_exclude_posts_in_archives',
+			'descr' 	=> __('If there are excluded cities inside a record (any), then this record will not be displayed on the archive page in these cities. For example, if the product woocommerce is excluded for the current city, then it will not be displayed in the catalog.', 'belingogeo'),
+			'post_type'	=> false,
+			'disabled'  => true,
+			'is_pro'	=> true
 		)
 	);
 
