@@ -172,25 +172,26 @@ function belingo_geo_settings() {
 	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_redirect_page' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_finding_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_first_city_when_nonecity' );
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_nonobject');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_posts_in_archives');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_in_breadcrumbs');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_url_type');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_nonobject' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_posts_in_archives' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_in_breadcrumbs' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_url_type' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_rewrite_cookie_by_url' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_confirmation_city');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_default_text_nonecity');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_filter_links_by_url');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_slug_generation');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_region_slug_generation');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_woo_auto_detect_city_checkout');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_search_in_popup');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_add_city_to_woo_page_title');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_header');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text1');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text2');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_windows_in_footer');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_posts');
-	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_pages');
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_default_text_nonecity' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_filter_links_by_url' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_slug_generation' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_region_slug_generation' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_woo_auto_detect_city_checkout' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_search_in_popup' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_add_city_to_woo_page_title' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_header' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text1' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text2' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_windows_in_footer' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_posts' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_pages' );
 	add_settings_section( 'belingo_geo_basic', __('Basic', 'belingogeo'), '', $settings_page );
 	add_settings_section( 'belingo_geo_excludes', __('Exceptions', 'belingogeo'), '', $settings_page );
 
@@ -539,6 +540,20 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_basic_finding_nonecity',
 			'descr' 	=> __('If this option is enabled, the city will be determined anyway, even if it is not in the list. Virtual URLs for such a city will not be generated.', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_rewrite_cookie_by_url', 
+		__('Overwrite cookies when following a direct link', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_basic_rewrite_cookie_by_url',
+			'descr' 	=> __('When going to pages or subdomains via a direct link, the cookie will be overwritten with the city from the URL.', 'belingogeo'),
 			'post_type'	=> false
 		)
 	);

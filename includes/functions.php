@@ -115,10 +115,10 @@ function belingoGeo_init_city() {
 	belingoGeo_city_url_redirect();
 
 	if(get_query_var('geo_city') && !isset($_COOKIE['geo_city'])) {
-		$city = belingoGeo_get_current_city();
-		if($city) {
-			belingogeo_remove_nogeo_cookie();
-			belingogeo_save_geo_cookie($city->get_name(), $city->get_slug());
+		belingogeo_save_current_city_in_cookie();
+	}elseif( get_query_var('geo_city') && isset( $_COOKIE['geo_city'] ) ) {
+		if( get_option('belingo_geo_basic_rewrite_cookie_by_url') && get_query_var('geo_city') != $_COOKIE['geo_city'] ) {
+			belingogeo_save_current_city_in_cookie();
 		}
 	}
 

@@ -170,6 +170,14 @@ function belingogeo_save_nogeo_cookie() {
 	setcookie('nogeo', 1, time()+1209600, COOKIEPATH, COOKIE_DOMAIN, false);
 }
 
+function belingogeo_save_current_city_in_cookie() {
+	$city = belingoGeo_get_current_city();
+	if($city) {
+		belingogeo_remove_nogeo_cookie();
+		belingogeo_save_geo_cookie($city->get_name(), $city->get_slug());
+	}
+}
+
 function belingogeo_get_default_city() {
 
 	$default_city_id = get_option('belingo_geo_basic_default_nonecity');
