@@ -2,8 +2,8 @@
 Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
-Tested up to: 6.7.1
-Stable tag: 1.11.1
+Tested up to: 6.7.2
+Stable tag: 1.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,14 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.12 =
+* Description update
+* Updating language packs
+* Added the ability to enable cookie rewriting when going to a page or subdomain via a direct link.
+* Added belingogeo_is_exclude hook.
+* Added the function of excluding records for each city.
+* Added a function for physically excluding records on archive pages for the city.
+
 = 1.11.1 =
 * Fixed city detection if the default city is not specified and the found city is not in the list. Now you can optionally display the first city from the list.
 
