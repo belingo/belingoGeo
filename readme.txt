@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
 Tested up to: 6.7.2
-Stable tag: 1.12
+Stable tag: 1.12.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,7 +65,7 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
-= 1.12 =
+= 1.12.0 =
 * Description update
 * Updating language packs
 * Added the ability to enable cookie rewriting when going to a page or subdomain via a direct link.
