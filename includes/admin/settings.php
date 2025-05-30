@@ -19,10 +19,22 @@ function belingoGeo_rewrite_rules_settings() {
 add_action('admin_init', 'belingogeo_download_example');
 function belingogeo_download_example() {
 
-	if(isset($_GET['page']) && $_GET['page'] == 'belingogeo_import' && isset($_GET['example'])) {
-		$example = BELINGO_GEO_PLUGIN_DIR.'/examples/'.sanitize_text_field($_GET['example']);
-		belingogeo_download_csv_file($example);
-		exit;
+	if( isset( $_GET['page']) && $_GET['page'] == 'belingogeo_import' && isset( $_GET['example'] ) ) {
+
+		$example_file = '';
+
+		if( $_GET['example'] == 'example1.csv' ) {
+			$example_file = 'example1.csv';
+		}elseif( $_GET['example'] == 'all_cities_rf.csv' ) {
+			$example_file = 'all_cities_rf.csv';		
+		}
+
+		if( !empty( $example_file ) ) {
+			$example = BELINGO_GEO_PLUGIN_DIR.'/examples/'.sanitize_text_field( $_GET['example'] );
+			belingogeo_download_csv_file( $example );
+			exit;
+		}
+
 	}
 
 }
