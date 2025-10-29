@@ -133,6 +133,11 @@ function belingogeo_modify_yaost_sitemap() {
 				$xml .= belingoGeo_get_xml_sitemap($url);
 				$page++;
 			}
+			$url = [
+				"loc" => get_site_url() . '/'.$city->get_slug().'_sitemap_tax_category.xml',
+				"lastmod" => date('c',time())
+			];
+			$xml .= belingoGeo_get_xml_sitemap($url);
 		}
 		$belingo_geo_exclude_all_pages = get_option('belingo_geo_exclude_all_pages');
 		if(!$belingo_geo_exclude_all_pages) {
