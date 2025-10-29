@@ -553,7 +553,7 @@ if(!function_exists('belingoGeo_get_current_city')) {
 		}
 
 		if(isset($city)) {
-			return $city;
+			return apply_filters( 'belingogeo_current_city', $city, $belingogeo_cityObj );
 		}
 
 		return false;
