@@ -19,8 +19,10 @@ function belingo_city_meta($s) {
 
 // filter on add do_shortcode for og:url
 // filter on add city in canonical
-add_filter('wpseo_opengraph_url', 'belingoGeo_wpseo_opengraph_urls');
-add_filter('wpseo_canonical', 'belingoGeo_wpseo_opengraph_urls');
+add_filter('wpseo_prev_rel_link', 'belingoGeo_wpseo_opengraph_urls', 9999, 1);
+add_filter('wpseo_next_rel_link', 'belingoGeo_wpseo_opengraph_urls', 9999, 1);
+add_filter('wpseo_opengraph_url', 'belingoGeo_wpseo_opengraph_urls', 9999, 1);
+add_filter('wpseo_canonical', 'belingoGeo_wpseo_opengraph_urls', 9999, 1);
 function belingoGeo_wpseo_opengraph_urls($u) {
 
 	$current_city = belingogeo_is_city_in_url($u);
