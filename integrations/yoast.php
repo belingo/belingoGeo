@@ -113,6 +113,7 @@ function belingogeo_rewrite_yoast_breadcrumbs( $crumbs ) {
 		foreach ( $crumbs as $key => $crumb ) {
 			if( !$is_exclude ) {
 				$crumbs[$key]['url'] = belingoGeo_append_city_url( $crumb['url'], $city->get_slug() );
+				$crumbs[$key]['text'] = do_shortcode( $crumb['text'] );
 			}
 		}
 	}
