@@ -367,8 +367,34 @@ function belingogeo_check_disallow_rule($key) {
 		"wp-app",
 		"wp-register.php",
 		"search",
-		"author"
+		"author",
+		"\.kml",
+		"wbcr-snippets",
+		"wc\/file\/transient",
+		"broken-link-checker",
+		"wbcr-snippet-tags",
+		"order-pay",
+		"order-received",
+		"view-order",
+		"\/orders\(",
+		"downloads",
+		"edit-account",
+		"edit-address",
+		"payment-methods",
+		"lost-password",
+		"customer-logout",
+		"add-payment-method",
+		"delete-payment-method",
+		"set-default-payment-method",
+		"yfym_collection"
 	];
+
+	$exclude_post_types = (array)get_option( 'belingo_geo_exclude_post_types' );
+	foreach( $exclude_post_types as $exclude_post_type_key => $exclude_post_type ) {
+		if( preg_match( '/'.$exclude_post_type_key.'/', $key ) ) {
+			$disallow_rules[] = $exclude_post_type_key;
+		}
+	}
 
 	foreach($disallow_rules as $disallow_rule) {
 		if(preg_match('/'.$disallow_rule.'/', $key)) {
