@@ -104,7 +104,7 @@ function belingogeo_rewrite_rules_array( $rules ) {
 	$cities = belingoGeo_get_cities($args);
 	$i = 1;
 	foreach($rules as $key => $rule) {
-		if(belingogeo_check_disallow_rule($key)) {
+		if(belingogeo_check_disallow_rule($key, $rule)) {
 			foreach($cities as $city) {
 				if($rule == 'index.php?product_cat=$matches[1]' || $rule == 'index.php?product_cat=$matches[1]&paged=$matches[2]') {
 					$belingoGeo_rules_woo_categories[$city->get_slug().'/'.$key] = $rule.'&geo_city='.$city->get_slug();

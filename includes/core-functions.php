@@ -351,42 +351,145 @@ function belingoGeo_is_custom_post_type( $post = NULL ) {
 
 }
 
-function belingogeo_check_disallow_rule($key) {
+function belingogeo_check_disallow_rule($key, $rule) {
 
 	$disallow_rules = [
-		"wc-auth",
-		"wc-api",
-		"sitemap",
-		"wp-json",
-		"attachment",
-		"feed",
-		"embed",
-		"trackback",
-		"\.txt",
-		"\.ico",
-		"wp-app",
-		"wp-register.php",
-		"search",
-		"author",
-		"\.kml",
-		"wbcr-snippets",
-		"wc\/file\/transient",
-		"broken-link-checker",
-		"wbcr-snippet-tags",
-		"order-pay",
-		"order-received",
-		"view-order",
-		"\/orders\(",
-		"downloads",
-		"edit-account",
-		"edit-address",
-		"payment-methods",
-		"lost-password",
-		"customer-logout",
-		"add-payment-method",
-		"delete-payment-method",
-		"set-default-payment-method",
-		"yfym_collection"
+		[
+			"compare" => "key",
+			"value" => "wc-auth"
+		],
+		[
+			"value" => "wc-api",
+			"compare" => "key"
+		],
+		[
+			"value" => "sitemap",
+			"compare" => "key"
+		],
+		[
+			"value" => "wp-json",
+			"compare" => "key"
+		],
+		[
+			"value" => "attachment",
+			"compare" => "key"
+		],
+		[
+			"value" => "feed",
+			"compare" => "key"
+		],
+		[
+			"value" => "embed",
+			"compare" => "key"
+		],
+		[
+			"value" => "trackback",
+			"compare" => "key"
+		],
+		[
+			"value" => "\.txt",
+			"compare" => "key"
+		],
+		[
+			"value" => "\.ico",
+			"compare" => "key"
+		],
+		[
+			"value" => "wp-app",
+			"compare" => "key"
+		],
+		[
+			"value" => "wp-register.php",
+			"compare" => "key"
+		],
+		[
+			"value" => "search",
+			"compare" => "key"
+		],
+		[
+			"value" => "author",
+			"compare" => "key"
+		],
+		[
+			"value" => "\.kml",
+			"compare" => "key"
+		],
+		[
+			"value" => "wbcr-snippets",
+			"compare" => "key"
+		],
+		[
+			"value" => "wc\/file\/transient",
+			"compare" => "key"
+		],
+		[
+			"value" => "broken-link-checker",
+			"compare" => "key"
+		],
+		[
+			"value" => "wbcr-snippet-tags",
+			"compare" => "key"
+		],
+		[
+			"value" => "order-pay",
+			"compare" => "key"
+		],
+		[
+			"value" => "order-received",
+			"compare" => "key"
+		],
+		[
+			"value" => "view-order",
+			"compare" => "key"
+		],
+		[
+			"value" => "\/orders\(",
+			"compare" => "key"
+		],
+		[
+			"value" => "downloads",
+			"compare" => "key"
+		],
+		[
+			"value" => "edit-account",
+			"compare" => "key"
+		],
+		[
+			"value" => "edit-address",
+			"compare" => "key"
+		],
+		[
+			"value" => "payment-methods",
+			"compare" => "key"
+		],
+		[
+			"value" => "lost-password",
+			"compare" => "key"
+		],
+		[
+			"value" => "customer-logout",
+			"compare" => "key"
+		],
+		[
+			"value" => "add-payment-method",
+			"compare" => "key"
+		],
+		[
+			"value" => "delete-payment-method",
+			"compare" => "key"
+		],
+		[
+			"value" => "set-default-payment-method",
+			"compare" => "key"
+		],
+		[
+			"value" => "yfym_collection",
+			"compare" => "key"
+		],
+		[
+			"value" => "spectra-popup",
+			"compare" => "key"
+		]
 	];
 
 	$disallow_rules = apply_filters( 'belingogeo_disallow_rules', $disallow_rules );
@@ -394,15 +497,37 @@ function belingogeo_check_disallow_rule($key) {
 	$exclude_post_types = get_option( 'belingo_geo_exclude_post_types' );
 	if( $exclude_post_types && is_array( $exclude_post_types ) ) {
 		foreach( $exclude_post_types as $exclude_post_type_key => $exclude_post_type ) {
-			if( preg_match( '/'.$exclude_post_type_key.'/', $key ) ) {
-				$disallow_rules[] = $exclude_post_type_key;
+			if( preg_match( '/\?'.$exclude_post_type_key.'=/', $rule ) ) {
+				$disallow_rules[] = [
+					"value" => $exclude_post_type_key,
+					"compare" => "rule"
+				];
+			}
+		}
+	}
+
+	$exclude_taxonomies = get_option( 'belingo_geo_exclude_taxonomies' );
+	if( $exclude_taxonomies && is_array( $exclude_taxonomies ) ) {
+		foreach( $exclude_taxonomies as $exclude_taxonomy_key => $exclude_taxonomy ) {
+			if( preg_match( '/\?'.$exclude_taxonomy_key.'=/', $rule ) ) {
+				$disallow_rules[] = [
+					"value" => $exclude_taxonomy_key,
+					"compare" => "rule"
+				];
 			}
 		}
 	}
 
 	foreach($disallow_rules as $disallow_rule) {
-		if(preg_match('/'.$disallow_rule.'/', $key)) {
-			return false;
+		if( $disallow_rule['compare'] == 'key' ) {
+			if( preg_match( '/'.$disallow_rule['value'].'/', $key ) ) {
+				return false;
+			}
+		}
+		if( $disallow_rule['compare'] == 'rule' ) {
+			if( preg_match( '/[\?\&]{1}'.$disallow_rule['value'].'=/', $rule ) ) {
+				return false;
+			}
 		}
 	}
 
