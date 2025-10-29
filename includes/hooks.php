@@ -122,7 +122,7 @@ function belingogeo_rewrite_rules_array( $rules ) {
 	if(count($belingoGeo_rules_woo_categories) > 0) {
 		$belingoGeo_rules = array_slice($belingoGeo_rules, 0, $belingoGeo_rules_last_woo_rule, true) +
 				   $belingoGeo_rules_woo_categories +
-				   array_slice($belingoGeo_rules, $belingoGeo_rules_last_woo_rule, count($belingoGeo_rules) - 1, true);
+				   array_slice($belingoGeo_rules, $belingoGeo_rules_last_woo_rule, count($belingoGeo_rules), true);
 	}
 
 	$belingoGeo_frontpage_rules = belingogeo_rewrite_frontpage($cities);
