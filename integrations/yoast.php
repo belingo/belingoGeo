@@ -38,6 +38,14 @@ function belingoGeo_wpseo_opengraph_urls($u) {
 
 }
 
+add_filter( 'wpseo_schema_breadcrumb', 'belingogeo_schema_breadcrumb', 99 );
+function belingogeo_schema_breadcrumb( $piece ) {
+    foreach ( $piece['itemListElement'] as &$list ) {
+            $list['name'] = do_shortcode( $list['name'] );
+    }
+    return $piece;
+}
+
 add_filter( 'wpseo_schema_webpage', 'belingogeo_wpseo_schema_webpage', 10, 1 );
 function belingogeo_wpseo_schema_webpage( $data ) {
 
