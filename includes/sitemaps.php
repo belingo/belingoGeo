@@ -303,7 +303,7 @@ function belingoGeo_get_sitemap_taxonomies_urls($city,$taxonomy) {
 
 	$exclude_taxonomies = get_option('belingo_geo_exclude_taxonomies');
 
-	if(!array_key_exists($taxonomy, $exclude_taxonomies)) {
+	if(!array_key_exists($taxonomy, (array)$exclude_taxonomies)) {
 
 		$terms = get_terms(array(
 			'taxonomy' => $taxonomy
