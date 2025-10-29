@@ -389,6 +389,8 @@ function belingogeo_check_disallow_rule($key) {
 		"yfym_collection"
 	];
 
+	$disallow_rules = apply_filters( 'belingogeo_disallow_rules', $disallow_rules );
+
 	$exclude_post_types = (array)get_option( 'belingo_geo_exclude_post_types' );
 	foreach( $exclude_post_types as $exclude_post_type_key => $exclude_post_type ) {
 		if( preg_match( '/'.$exclude_post_type_key.'/', $key ) ) {
