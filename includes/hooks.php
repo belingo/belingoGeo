@@ -160,6 +160,8 @@ function belingogeo_generate_links($url, $object) {
 			$object_id = $object->term_id;
 		}elseif($object_name == 'WP_Post') {
 			$object_id = $object->ID;
+		}else{
+			$object_id = false;
 		}
 	}else{
 		$object_name = 'WP_Post';
