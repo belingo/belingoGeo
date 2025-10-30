@@ -214,6 +214,8 @@ add_filter( 'page_link', 'belingogeo_generate_links', 10, 2 );
 add_filter( 'post_link', 'belingogeo_generate_links', 10, 2 );
 add_filter( 'term_link', 'belingogeo_generate_links', 10, 2 );
 add_filter( 'post_type_link', 'belingogeo_generate_links', 10, 2 );
+add_filter( 'month_link', 'belingogeo_generate_links', 10, 2 );
+add_filter( 'year_link', 'belingogeo_generate_links', 10, 2 );
 
 add_action( 'admin_footer-edit.php', function () {
 	global $post_type_object;
