@@ -12,7 +12,25 @@ function belingogeo_city_title( $title ) {
 
 }
 
-remove_filter('template_redirect','redirect_canonical');
+add_filter( 'redirect_canonical', 'belingogeo_redirect_canonical', 10, 2 );
+function belingogeo_redirect_canonical( $redirect_url, $requested_url ) {
+
+	if( is_front_page() && get_option( 'belingo_geo_url_type' ) == 'subdirectory' ) {
+		$parsed_requested_url = parse_url( $requested_url );
+		if( !preg_match( '/\/$/', $parsed_requested_url['path'] ) ) {
+			if( isset( $_SERVER['QUERY_STRING'] ) && !empty( $_SERVER['QUERY_STRING'] ) ) {
+				$redirect_url = str_replace( '?', '/?', $requested_url );
+			}else{
+				$redirect_url = $requested_url . '/';
+			}
+		}else{
+			$redirect_url = false;
+		}
+	}
+
+	return $redirect_url;
+
+}
 
 add_action( 'wp_enqueue_scripts', 'belingogeo_ajax_data', 99 );
 function belingogeo_ajax_data() {
