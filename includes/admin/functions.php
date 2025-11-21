@@ -79,7 +79,7 @@ function belingoGeo_cities_fields() {
 			'public'   => true
 		);
 		$post_types = get_post_types( $args, 'names', 'and' );
-		add_meta_box( "exclude_cities_field", __('BelingoGeo - Exclude in cities', 'belingogeo'), "belingogeo_exclude_cities_field", array_diff( $post_types, array( 'cities' ) ), "normal", "high" );
+		add_meta_box( "exclude_cities_field", __('BelingoGeo - Exclude/Include in cities', 'belingogeo'), "belingogeo_exclude_cities_field", array_diff( $post_types, array( 'cities' ) ), "normal", "high" );
 	}
 
 }
@@ -544,9 +544,13 @@ function belingogeo_bg_regions_save_term_fields( $term_id ) {
 
 add_action( 'admin_enqueue_scripts', 'belingoGeo_scripts_admin' );
 function belingoGeo_scripts_admin() {
-	wp_enqueue_style( 'belingo-geo-select2', BELINGO_GEO_PLUGIN_URL . '/css/select2.min.css' );
+	if( !wp_style_is( 'select2' ) ) {
+		wp_enqueue_style( 'select2', BELINGO_GEO_PLUGIN_URL . '/css/select2.min.css' );
+	}
 	wp_enqueue_style( 'belingo-geo-styles', BELINGO_GEO_PLUGIN_URL . '/css/belingoGeoAdmin.css' );
-	wp_enqueue_script( 'belingo-geo-select2', BELINGO_GEO_PLUGIN_URL . '/js/select2.min.js', array( 'jquery' ) );
+	if( !wp_script_is( 'select2' ) ) {
+		wp_enqueue_script( 'select2', BELINGO_GEO_PLUGIN_URL . '/js/select2.min.js', array( 'jquery' ) );
+	}
 	wp_enqueue_script( 'belingo-geo-scripts-admin', BELINGO_GEO_PLUGIN_URL . '/js/belingoGeoAdmin.js', array( 'jquery' ), '', false );
 }
 

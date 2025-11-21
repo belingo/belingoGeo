@@ -24,3 +24,18 @@
 	display: block;
 	overflow: visible;
 }
+.belingogeopro_exclude_cities_container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+.belingogeopro_exclude_cities_item {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+.belingogeopro_exclude_cities_item input {
+	margin: 0;
+	padding: 0;
+}
