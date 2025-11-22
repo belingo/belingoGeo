@@ -202,6 +202,7 @@ function belingo_geo_settings() {
 	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_disable_url' );
 	//register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_redirect_page' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_finding_nonecity' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_disable_subdomain_redirect' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_first_city_when_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_sitemap_per_page' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_nonobject' );
@@ -394,6 +395,22 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_exclude_posts_in_archives',
 			'descr' 	=> __('If there are excluded cities inside a record (any), then this record will not be displayed on the archive page in these cities. For example, if the product woocommerce is excluded for the current city, then it will not be displayed in the catalog.', 'belingogeo'),
+			'post_type'	=> false,
+			'disabled'  => true,
+			'is_pro'	=> true
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_disable_subdomain_redirect', 
+		__('Disable forced redirect in subdomain mode', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_disable_subdomain_redirect',
+			'descr' 	=> __('By default, in subdomain mode, if the city is stored in a cookie and the current page isn\'t excluded, but the current subdomain is different, a forced redirect will occur. This option disables this redirect.', 'belingogeo'),
 			'post_type'	=> false,
 			'disabled'  => true,
 			'is_pro'	=> true
