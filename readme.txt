@@ -2,8 +2,8 @@
 Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
-Tested up to: 6.7.2
-Stable tag: 1.12.1
+Tested up to: 6.8.3
+Stable tag: 1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,26 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.13 =
+* Fixed the sitemap for pages with excluded cities
+* Fixed shortcode functionality on pages with excluded cities
+* Updated language packs
+* Added an option to disable redirects in subdomain mode
+* Changed the metabox title for excluding cities in posts. Fixed the display of select2 fields
+* Implemented city substitution in archive links (/2025/05, etc.) 
+* Redirect_canonical functionality restored
+* Fixed belingogeo_check_disallow_rule function
+* Added belingogeo_disallow_rules hook
+* Shortcodes are now supported in Yoast breadcrumbs
+* Fixed Yoast ld json; shortcodes are now supported in the breadcrumbs tag
+* Added geo-dependent categories to the sitemap
+* Fixed a warning error related to taxonomies in the sitemap
+* Fixed WP Rewrite rule merging in subdirectory mode
+* Cleaned up WP Rewrite rules to optimize performance in subdirectory mode
+* Fixed cookie overwriting when opening the main domain
+* Fixed prev next meta tags in Yoast and increased priority to avoid overwriting plugin functions
+* Added belingogeo_current_city hook
+
 = 1.12.1 =
 * Fix bug access violation vulnerability
 
