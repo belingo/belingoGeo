@@ -8,8 +8,15 @@ function belingogeo_city_field_shortcode($atts) {
 	], $atts );
 
 	$result = '';
+	$city = false;
 
-	$city = belingoGeo_get_current_city();
+	if( get_option( 'belingo_geo_url_type' ) == 'subdirectory' || get_option( 'belingo_geo_url_type' ) == 'subdomain' ) {
+		if( get_query_var('geo_city') ) {
+			$city = belingoGeo_get_current_city();
+		}
+	}else{
+		$city = belingoGeo_get_current_city();
+	}
 
 	if(!$city) {
 		$city = belingogeo_get_default_city();
@@ -54,8 +61,16 @@ function belingogeo_city_content_shortcode($atts, $content) {
 
 	$result = '';
 	$show_content = false;
+	$current_city = false;
 
-	$current_city = belingoGeo_get_current_city();
+	if( get_option( 'belingo_geo_url_type' ) == 'subdirectory' || get_option( 'belingo_geo_url_type' ) == 'subdomain' ) {
+		if( get_query_var('geo_city') ) {
+			$current_city = belingoGeo_get_current_city();
+		}
+	}else{
+		$current_city = belingoGeo_get_current_city();
+	}
+
 	$default_city = belingogeo_get_default_city();
 
 	if($current_city) {
