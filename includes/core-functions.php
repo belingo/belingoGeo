@@ -557,9 +557,9 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 		$request_uri = '';
 	}
 	
-	if(preg_match('/sitemap.*\.xml/', $request_uri) && get_option('belingo_geo_url_type') != 'subdomain') {
-		return true;
-	}
+	//if(preg_match('/sitemap.*\.xml/', $request_uri) && get_option('belingo_geo_url_type') != 'subdomain') {
+		//return true;
+	//}
 
 	$default_city = belingogeo_get_default_city();
 	if($default_city && $city) {
@@ -594,14 +594,20 @@ function belingogeo_is_exclude($object_id = '', $object = '', $current_city = ''
 	$is_exclude = false;
 
 	if($object == 'WP_Post_Type') {
-		$post_type = get_queried_object()->name;
+		$post_type = '';
+		if( get_queried_object() ) {
+			$post_type = get_queried_object()->name;
+		}
 		if(array_key_exists($post_type, (array)$exclude_post_types)) {
 			$is_exclude = true;
 		}
 	}
 
 	if($object == 'WP_Taxonomy') {
-		$taxonomy = get_queried_object()->name;
+		$taxonomy = '';
+		if( get_queried_object() ) {
+			$taxonomy = get_queried_object()->name;
+		}
 		if(array_key_exists($taxonomy, (array)$exclude_taxonomies)) {
 			$is_exclude = true;
 		}

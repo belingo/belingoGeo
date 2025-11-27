@@ -218,11 +218,13 @@ function belingoGeo_get_sitemap_post_urls($city,$per_page,$page) {
 			if($current_city) {
 				$loc = belingogeo_remove_city_url($loc, $current_city->get_slug());
 			}
-			$loc = belingoGeo_append_city_url($loc, $city);
-			$urls[] = [
-				"loc" => $loc,
-				"lastmod" => date('c',strtotime($post_item->post_modified))
-			];
+			if( !belingogeo_is_exclude( $post_item->ID, 'WP_Post', $city ) ) {
+				$loc = belingoGeo_append_city_url($loc, $city);
+				$urls[] = [
+					"loc" => $loc,
+					"lastmod" => date('c',strtotime($post_item->post_modified))
+				];
+			}
 		}
 	}
 
@@ -258,11 +260,13 @@ function belingoGeo_get_sitemap_page_urls($city,$per_page,$page) {
 			if($current_city) {
 				$loc = belingogeo_remove_city_url($loc, $current_city->get_slug());
 			}
-			$loc = belingoGeo_append_city_url($loc, $city);
-			$urls[] = [
-				"loc" => $loc,
-				"lastmod" => date('c',strtotime($post_item->post_modified))
-			];
+			if( !belingogeo_is_exclude( $post_item->ID, 'WP_Post', $city ) ) {
+				$loc = belingoGeo_append_city_url($loc, $city);
+				$urls[] = [
+					"loc" => $loc,
+					"lastmod" => date('c',strtotime($post_item->post_modified))
+				];
+			}
 		}
 	}
 
@@ -289,11 +293,13 @@ function belingoGeo_get_sitemap_custom_posts_urls($city,$per_page,$page,$post_ty
 				if($current_city) {
 					$loc = belingogeo_remove_city_url($loc, $current_city->get_slug());
 				}
-				$loc = belingoGeo_append_city_url($loc, $city);
-				$urls[] = [
-					"loc" => $loc,
-					"lastmod" => date('c',strtotime($post_item->post_modified))
-				];
+				if( !belingogeo_is_exclude( $post_item->ID, 'WP_Post_Type', $city ) ) {
+					$loc = belingoGeo_append_city_url($loc, $city);
+					$urls[] = [
+						"loc" => $loc,
+						"lastmod" => date('c',strtotime($post_item->post_modified))
+					];
+				}
 			}
 		}
 	}
