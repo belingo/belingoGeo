@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
 Tested up to: 6.8.3
-Stable tag: 1.13
+Stable tag: 1.13.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,10 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.13.1 =
+* URL generation in the sitemap has been adjusted
+* Added the object variable to the belingogeo_is_exclude hook
+
 = 1.13 =
 * Fixed the sitemap for pages with excluded cities
 * Fixed shortcode functionality on pages with excluded cities
