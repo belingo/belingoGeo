@@ -203,7 +203,7 @@ function belingogeo_generate_links($url, $object) {
 
 	$original_url = $url;
 
-	if(!belingogeo_is_exclude($object_id, $object_name)) {
+	if( !belingogeo_is_exclude( $object_id, $object_name ) && !preg_match( '/sitemap.*\.xml/', $_SERVER['REQUEST_URI'] ) ) {
 		$url = belingoGeo_append_city_url($url, $city_slug);
 	}
 
