@@ -28,6 +28,10 @@ function belingogeo_redirect_canonical( $redirect_url, $requested_url ) {
 		}
 	}
 
+	if( preg_match( '/sitemap.*\.xml/', $_SERVER['REQUEST_URI'] ) ) {
+		$redirect_url = false;
+	}
+
 	return $redirect_url;
 
 }
