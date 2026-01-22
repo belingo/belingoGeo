@@ -117,19 +117,23 @@ function belingoGeo_init_city() {
 	if(get_query_var('geo_city') && !isset($_COOKIE['geo_city'])) {
 		belingogeo_save_current_city_in_cookie();
 	}elseif( get_query_var('geo_city') && isset( $_COOKIE['geo_city'] ) ) {
-		if( get_option('belingo_geo_basic_rewrite_cookie_by_url') && get_query_var('geo_city') != $_COOKIE['geo_city'] ) {
-			belingogeo_save_current_city_in_cookie();
+		if( get_option('belingo_geo_url_type') == 'subdomain' || get_option('belingo_geo_url_type') == 'subdirectory' ) {
+			if( get_option('belingo_geo_basic_rewrite_cookie_by_url') && get_query_var('geo_city') != $_COOKIE['geo_city'] ) {
+				belingogeo_save_current_city_in_cookie();
+			}
 		}
 	}elseif( !get_query_var('geo_city') && isset( $_COOKIE['geo_city'] ) ) {
-		if( get_option('belingo_geo_basic_rewrite_cookie_by_url') ) {
-			belingogeo_remove_geo_cookie();
-			belingogeo_save_nogeo_cookie();
-			if(isset($_SERVER['REQUEST_URI'])) {
-				$request_uri = sanitize_url($_SERVER['REQUEST_URI']);
-			}else{
-				$request_uri = '';
+		if( get_option('belingo_geo_url_type') == 'subdomain' || get_option('belingo_geo_url_type') == 'subdirectory' ) {
+			if( get_option('belingo_geo_basic_rewrite_cookie_by_url') && get_option('belingo_geo_basic_rewrite_cookie_by_url_on_nogeo') ) {
+				belingogeo_remove_geo_cookie();
+				belingogeo_save_nogeo_cookie();
+				if(isset($_SERVER['REQUEST_URI'])) {
+					$request_uri = sanitize_url($_SERVER['REQUEST_URI']);
+				}else{
+					$request_uri = '';
+				}
+				Header( "Location: " . $request_uri );
 			}
-			Header( "Location: " . $request_uri );
 		}
 	}
 

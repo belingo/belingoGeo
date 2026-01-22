@@ -210,6 +210,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_show_in_breadcrumbs' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_url_type' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_rewrite_cookie_by_url' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_rewrite_cookie_by_url_on_nogeo' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_forced_confirmation_city');
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_default_text_nonecity' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_filter_links_by_url' );
@@ -603,6 +604,20 @@ function belingo_geo_settings() {
 			'type'      => 'checkbox',
 			'option_name' => 'belingo_geo_basic_rewrite_cookie_by_url',
 			'descr' 	=> __('When going to pages or subdomains via a direct link, the cookie will be overwritten with the city from the URL.', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_basic_rewrite_cookie_by_url_on_nogeo', 
+		__('Overwrite cookies when following a direct link without a city', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_basic_rewrite_cookie_by_url_on_nogeo',
+			'descr' 	=> __('When you navigate to pages without a city, via a direct link, the cookie will be reset. This only works if the general cookie overwrite is enabled.', 'belingogeo'),
 			'post_type'	=> false
 		)
 	);
