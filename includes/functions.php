@@ -44,6 +44,11 @@ function belingoGeo_city_url_redirect() {
 	}
 
 	$allow = true;
+
+	if( get_option('belingo_geo_disable_subdirectory_redirect') ) {
+		$allow = false;
+	}
+
 	$allow = apply_filters('belingogeo_allow_city_url_redirect', $allow, $disable_urls, $is_exclude, $request_uri);
 
 	if(!$allow) {
