@@ -119,6 +119,12 @@ function belingoGeo_init_city() {
 
 	belingoGeo_city_url_redirect();
 
+	if( get_query_var('geo_city') && belingogeo_is_exclude() && get_option('belingo_geo_url_type') == 'subdirectory' ) {
+		global $wp_query;
+		$wp_query->set_404();
+		status_header(404);
+	}
+
 	if(get_query_var('geo_city') && !isset($_COOKIE['geo_city'])) {
 		belingogeo_save_current_city_in_cookie();
 	}elseif( get_query_var('geo_city') && isset( $_COOKIE['geo_city'] ) ) {
