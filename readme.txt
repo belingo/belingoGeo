@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
 Tested up to: 6.8.3
-Stable tag: 1.13.1
+Stable tag: 1.13.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,13 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.13.2 =
+* Disabled redirect_canonical for XML sitemap
+* The cookie rewriting function when following a direct link has been limited; it now only works in subdirectory and subdomain mode. A separate option has also been added to reset cookies when navigating to pages without a city
+* Added an option to disable forced redirection in subdirectory mode
+* Disabled redirect_canonical for 404 pages
+* Excluded pages in cities can now return a 404 code
+
 = 1.13.1 =
 * URL generation in the sitemap has been adjusted
 * Added the object variable to the belingogeo_is_exclude hook
