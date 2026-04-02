@@ -40,22 +40,43 @@ function belingoGeo_wpseo_opengraph_urls($u) {
 
 add_filter( 'wpseo_schema_breadcrumb', 'belingogeo_schema_breadcrumb', 99 );
 function belingogeo_schema_breadcrumb( $piece ) {
+	$allow = true;
+	if( get_option('belingo_geo_url_type') != 'subdomain' ) {
+		$allow = apply_filters('belingogeo_allow_generate_links', $allow, '', '');
+	}
+	$disable_urls = get_option('belingo_geo_basic_disable_url');
+
+	if($allow && !$disable_urls) {
+		if(isset($piece['@id'])) {
+			$piece['@id'] = belingoGeo_append_city_url($piece['@id'], get_query_var('geo_city'));
+		}
+	}
     foreach ( $piece['itemListElement'] as &$list ) {
             $list['name'] = do_shortcode( $list['name'] );
     }
     return $piece;
 }
 
-add_filter( 'wpseo_schema_webpage', 'belingogeo_wpseo_schema_webpage', 10, 1 );
+add_filter( 'wpseo_schema_webpage', 'belingogeo_wpseo_schema_webpage', 99, 1 );
 function belingogeo_wpseo_schema_webpage( $data ) {
 
 	$allow = true;
-	$allow = apply_filters('belingogeo_allow_generate_links', $allow, '', '');
+	if( get_option('belingo_geo_url_type') != 'subdomain' ) {
+		$allow = apply_filters('belingogeo_allow_generate_links', $allow, '', '');
+	}
 	$disable_urls = get_option('belingo_geo_basic_disable_url');
 
 	if($allow && !$disable_urls) {
 		if(isset($data['@id'])) {
 			$data['@id'] = belingoGeo_append_city_url($data['@id'], get_query_var('geo_city'));
+		}
+		
+		if(isset($data['isPartOf']['@id'] ) ) {
+			$data['isPartOf']['@id'] = belingoGeo_append_city_url($data['isPartOf']['@id'], get_query_var('geo_city'));
+		}
+		
+		if(isset($data['about']['@id'] ) ) {
+			$data['about']['@id'] = belingoGeo_append_city_url($data['about']['@id'], get_query_var('geo_city'));
 		}
 
 		if(isset($data['url'])) {
