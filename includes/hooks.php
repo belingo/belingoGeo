@@ -79,9 +79,9 @@ function belingo_geo_scripts() {
 
 	wp_enqueue_style('belingo-geo', BELINGO_GEO_PLUGIN_URL . '/css/belingoGeo.css', array(), BELINGO_GEO_VERSION);
 
-	if(!wp_script_is('jquery', 'enqueued')) {
-        wp_enqueue_script('jquery');
-    }
+	//if(!wp_script_is('jquery', 'enqueued')) {
+    //    wp_enqueue_script('jquery');
+    //}
 	wp_enqueue_script('belingo-geo-scripts', BELINGO_GEO_PLUGIN_URL . '/js/belingoGeo.js', array('jquery'), BELINGO_GEO_VERSION, true);
 
 }

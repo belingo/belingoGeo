@@ -127,17 +127,21 @@
 }
 
 .pop-up.popup-window{
-  position: fixed;
+  position: absolute;
   display: none;
   left:50%;
-  top:50%;
   z-index: 1100;
+  margin-top: 50px;
   font-family:"Open Sans", sans-serif;
   font-size: 13px;
   -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.36);
     -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.36);
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.36);
     background-color: #f4f5fd;
+}
+
+.bg-popup-visible {
+  display: block!important;
 }
 
 .popup-window-with-titlebar .popup-window-content,

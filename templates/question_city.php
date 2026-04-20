@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 <div class="popup-window-overlay" id="popup-window-overlay-cityConfirm" style="z-index: 1099; width: 100%; height: 100%; filter: none; opacity: 1; display: block;left:0;top:0;"></div>
-<div id="cityConfirm" style="display: block;position: absolute;" class="popup-window pop-up city-confirm">
+<div id="cityConfirm" class="popup-window pop-up city-confirm bg-popup-visible">
 	<div id="popup-window-content-cityConfirm" class="popup-window-content">
 		<div class="your-city">
 			<div class="your-city__label"><?php esc_html_e('Your city', 'belingogeo'); ?></div>
