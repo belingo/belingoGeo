@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
 Tested up to: 6.8.3
-Stable tag: 1.13.2
+Stable tag: 1.13.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,11 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.13.3 =
+* Yoast JSON markup has been refined.
+* Moving away from the mandatory use of the jQuery library
+* An infinite recursion in the home_url filter has been fixed.
+
 = 1.13.2 =
 * Disabled redirect_canonical for XML sitemap
 * The cookie rewriting function when following a direct link has been limited; it now only works in subdirectory and subdomain mode. A separate option has also been added to reset cookies when navigating to pages without a city
