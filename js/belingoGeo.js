@@ -42,11 +42,13 @@ function belingogeo_register_events() {
 			belingogeo_preloadCities();
 		});
 	}
-	var geoChangeCityLink = document.querySelector('.geolocation__link');
-	if( geoChangeCityLink ) {
-		geoChangeCityLink.addEventListener('click', function(e) {
-			e.preventDefault();
-			belingogeo_preloadCities();
+	var geoChangeCityLinks = document.querySelectorAll('.geolocation__link');
+	if( geoChangeCityLinks ) {
+		geoChangeCityLinks.forEach( el => {
+			el.addEventListener('click', function(e) {
+				e.preventDefault();
+				belingogeo_preloadCities();
+			});
 		});
 	}
 
@@ -63,7 +65,12 @@ async function belingogeo_getWidgetCity() {
       throw new Error('Response status: ' + response.status);
     }
     const result = await response.text();
-    document.querySelector('.geolocation__value').innerHTML = result;
+    if( result ) {
+	    var geolocation_value = document.querySelector('.geolocation__value');
+	    if( geolocation_value ) {
+	    	geolocation_value.innerHTML = result;
+	    }
+  	}
   } catch (error) {
     console.error(error.message);
   }
@@ -141,7 +148,14 @@ async function belingogeo_loadCities() {
     }
     const result = await response.text();
     document.querySelector('.quick-locations__values__container').innerHTML = result;
-    var selectGeoCity = document.querySelectorAll('.select_geo_city');
+    belingogeo_registerClickOnCity();
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+function belingogeo_registerClickOnCity() {
+	var selectGeoCity = document.querySelectorAll('.select_geo_city');
 	if( selectGeoCity ) {
 		selectGeoCity.forEach( el => {
 			el.addEventListener('click', function(e) {
@@ -157,9 +171,6 @@ async function belingogeo_loadCities() {
 		e.preventDefault();
 		belingogeo_selectNoGeo();
 	});
-  } catch (error) {
-    console.error(error.message);
-  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
