@@ -10,9 +10,9 @@
 |   http://sypex.net/bsd_license.txt                                        |
 \***************************************************************************/
 
-define ('SXGEO_FILE', 0);
-define ('SXGEO_MEMORY', 1);
-define ('SXGEO_BATCH',  2);
+if (!defined('SXGEO_FILE'))   define ('SXGEO_FILE', 0);
+if (!defined('SXGEO_MEMORY')) define ('SXGEO_MEMORY', 1);
+if (!defined('SXGEO_BATCH'))  define ('SXGEO_BATCH',  2);
 class SxGeo {
 	protected $fh;
 	protected $ip1c;

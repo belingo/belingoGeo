@@ -195,6 +195,14 @@ function belingogeo_get_default_city() {
 
 function belingogeo_get_city_by($by, $value) {
 
+	static $cache = [];
+
+	$cache_key = $by . ':' . (is_scalar($value) ? (string) $value : serialize($value));
+
+	if(array_key_exists($cache_key, $cache)) {
+		return $cache[$cache_key] ? new BelingoGeo_City($cache[$cache_key]) : false;
+	}
+
 	if($by == 'id') {
 		$city = get_post($value, ARRAY_A);
 		if($city) {
@@ -203,32 +211,29 @@ function belingogeo_get_city_by($by, $value) {
 	}
 
 	if($by == 'slug' || $by == 'title') {
-		$args = [
-			'post_type' 	 => 'cities',
-			'post_status' 	 => 'publish',
-			'posts_per_page' => 1,
-			'suppress_filters' => true
-		];
+		global $wpdb;
+
 		if($by == 'slug') {
-			$args['name'] = $value;
+			$lookup_value = sanitize_title_for_query($value);
+			$sql = "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'cities' AND post_status = 'publish' AND post_name = %s ORDER BY post_date DESC LIMIT 1";
+		}else{
+			$lookup_value = $value;
+			$sql = "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'cities' AND post_status = 'publish' AND post_title = %s ORDER BY post_date DESC LIMIT 1";
 		}
-		if($by == 'title') {
-			$args['title'] = $value;
-		}
-		$city = new WP_Query($args);
-		if(count($city->posts) > 0) {
-			foreach($city->posts as $post_obj) {
-				$city_id = $post_obj->ID;
-			}
+
+		$found_id = $wpdb->get_var( $wpdb->prepare( $sql, $lookup_value ) );
+		if($found_id) {
+			$city_id = (int) $found_id;
 		}
 	}
+
+	$cache[$cache_key] = isset($city_id) ? (int) $city_id : false;
 
 	if(isset($city_id)) {
 		return new BelingoGeo_City($city_id);
 	}
 
 	return false;
-
 }
 
 function belingoGeo_getUserIP() {
