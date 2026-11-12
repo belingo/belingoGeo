@@ -3,7 +3,7 @@ Contributors: belingo
 Tags: geo-targeting, geo target, geotargeting, targeted content, geolocation
 Requires at least: 5.0.0
 Tested up to: 7.1.4
-Stable tag: 1.13.3
+Stable tag: 1.13.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ We are on social networks:
 5. Regions in console
 
 == Changelog ==
+= 1.13.4 =
+* Fix XSS vulnerability
+
 = 1.13.3 =
 * Yoast JSON markup has been refined.
 * Moving away from the mandatory use of the jQuery library
