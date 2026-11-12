@@ -2,6 +2,8 @@
 
 function belingoGeo_append_city_url($url, $city) {
 
+	$city = sanitize_title( $city );
+
 	if(preg_match('/\/'.$city.'\//', $url)) {
 		return $url;
 	}
@@ -20,6 +22,8 @@ function belingoGeo_append_city_url($url, $city) {
 }
 
 function belingogeo_insert_city_url($url, $city) {
+
+	$city = sanitize_title( $city );
 
 	$charset = mb_detect_encoding($url);
 	$url = iconv($charset, "UTF-8", $url);

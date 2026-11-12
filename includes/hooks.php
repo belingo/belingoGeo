@@ -200,7 +200,7 @@ function belingogeo_generate_links($url, $object) {
 		if(!get_query_var('geo_city')) {
 			return $url;
 		}
-		$city_slug = get_query_var('geo_city');
+		$city_slug = sanitize_title( get_query_var('geo_city') );
 	}else{
 		$city = belingoGeo_get_current_city();
 		if(!$city) {
