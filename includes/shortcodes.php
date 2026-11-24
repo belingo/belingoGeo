@@ -11,7 +11,7 @@ function belingogeo_city_field_shortcode($atts) {
 	$city = false;
 
 	if( get_option( 'belingo_geo_url_type' ) == 'subdirectory' || get_option( 'belingo_geo_url_type' ) == 'subdomain' ) {
-		if( get_query_var('geo_city') ) {
+		if( get_query_var('geo_city') || get_option( 'belingo_geo_use_cookies_for_shortcode' ) ) {
 			$city = belingoGeo_get_current_city();
 		}
 	}else{
@@ -64,7 +64,7 @@ function belingogeo_city_content_shortcode($atts, $content) {
 	$current_city = false;
 
 	if( get_option( 'belingo_geo_url_type' ) == 'subdirectory' || get_option( 'belingo_geo_url_type' ) == 'subdomain' ) {
-		if( get_query_var('geo_city') ) {
+		if( get_query_var('geo_city') || get_option( 'belingo_geo_use_cookies_for_shortcode' ) ) {
 			$current_city = belingoGeo_get_current_city();
 		}
 	}else{

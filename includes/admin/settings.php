@@ -224,6 +224,7 @@ function belingo_geo_settings() {
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text1' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_popup_window_text2' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_basic_enable_windows_in_footer' );
+	register_setting( 'belingo_geo_excludes', 'belingo_geo_use_cookies_for_shortcode' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_posts' );
 	register_setting( 'belingo_geo_excludes', 'belingo_geo_exclude_all_pages' );
 	add_settings_section( 'belingo_geo_basic', __('Basic', 'belingogeo'), '', $settings_page );
@@ -341,6 +342,20 @@ function belingo_geo_settings() {
 			'type'      => 'text',
 			'option_name' => 'belingo_geo_basic_popup_window_text2',
 			'descr' 	=> __('Additional text2 in the popup window', 'belingogeo'),
+			'post_type'	=> false
+		)
+	);
+
+	add_settings_field( 
+		'belingo_geo_use_cookies_for_shortcode', 
+		__('Use cookies for shortcode functionality', 'belingogeo'),
+		'belingo_geo_display_settings', 
+		$settings_page, 
+		'belingo_geo_basic', 
+		array( 
+			'type'      => 'checkbox',
+			'option_name' => 'belingo_geo_use_cookies_for_shortcode',
+			'descr' 	=> __('By default, in modes using subdirectories or subdomains, shortcodes rely on the slug present in the address bar. If no slug is found — for instance, if a page is excluded — the shortcodes will display data for the default city. This option disables that behavior, allowing data from a cookie to be used in such cases instead.', 'belingogeo'),
 			'post_type'	=> false
 		)
 	);
